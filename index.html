@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Оптика добрых цен — Очки с линзами в Нижнем Новгороде</title>
-    <meta name="description" content="Очки с линзами по честной цене в Нижнем Новгороде. Проверка зрения бесплатно, прозрачные комплекты для чтения, компьютера, улицы и детей.">
+    <title>Оптика добрых цен — Очки с линзами в Нижнем Новгороде и Одинцово</title>
+    <meta name="description" content="Очки с линзами по честной цене в Нижнем Новгороде и Одинцово. Проверка зрения бесплатно, прозрачные комплекты для чтения, компьютера, улицы и детей.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <!-- Open Graph для соцсетей -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://optikadobryhcen.ru/">
+    <meta property="og:title" content="Оптика добрых цен — Очки с линзами в Нижнем Новгороде и Одинцово">
+    <meta property="og:description" content="Очки с линзами по честной цене. Проверка зрения бесплатно. Нижний Новгород и Одинцово.">
+    <meta property="og:image" content="https://optikadobryhcen.ru/logo.png">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Оптика добрых цен — Очки с линзами">
+    <meta name="twitter:description" content="Очки с линзами по честной цене. Проверка зрения бесплатно. Нижний Новгород и Одинцово.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body data-current-city="nnov">
@@ -523,6 +535,7 @@
                         <button type="submit" class="btn btn-submit">Записаться на проверку зрения</button>
 
                         <p class="form-note">* Поля обязательны для заполнения</p>
+                        <p class="form-privacy"><a href="politika-konfidencialnosti.html">Политика конфиденциальности</a> — отправляя заявку, вы соглашаетесь на обработку персональных данных.</p>
                     </form>
                 </div>
             </div>
@@ -576,6 +589,7 @@
                         <li><a href="#pricing">Цены</a></li>
                         <li><a href="#why">Почему мы</a></li>
                         <li><a href="#salons">Салоны</a></li>
+                        <li><a href="politika-konfidencialnosti.html">Политика конфиденциальности</a></li>
                     </ul>
                 </div>
                 
@@ -604,10 +618,22 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Оптика. Все права защищены.</p>
+                <p>&copy; <span id="currentYear"></span> Оптика. Все права защищены. <a href="politika-konfidencialnosti.html" class="footer-privacy-link">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
+
+    <!-- Плавающая кнопка «Позвонить» -->
+    <div class="float-phone">
+        <a href="tel:+78311234567" class="float-phone-btn" data-city-content="nnov" aria-label="Позвонить в Нижнем Новгороде" title="Позвонить">
+            <svg class="float-phone-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span class="float-phone-text">Позвонить</span>
+        </a>
+        <a href="tel:+79778855250" class="float-phone-btn" data-city-content="odintsovo" aria-label="Позвонить в Одинцово" title="Позвонить">
+            <svg class="float-phone-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span class="float-phone-text">Позвонить</span>
+        </a>
+    </div>
 
     <!-- Замените ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ на ключ с https://developer.tech.yandex.ru/ (JavaScript API и HTTP Геокодер) -->
     <script>window.YANDEX_MAPS_API_KEY = 'ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ';</script>
