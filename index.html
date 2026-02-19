@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Оптика добрых цен — Очки с линзами в Нижнем Новгороде</title>
+    <meta name="description" content="Очки с линзами по честной цене в Нижнем Новгороде. Проверка зрения бесплатно, прозрачные комплекты для чтения, компьютера, улицы и детей.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-current-city="nnov">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-content">
+                <a href="#" class="logo" title="Оптика добрых цен">
+                    <img src="logo.png" alt="Оптика добрых цен" class="logo-img">
+                </a>
+
+                <!-- Desktop Menu (центр) -->
+                <div class="nav-menu desktop-menu">
+                    <a href="#" class="nav-link">Главная</a>
+                    <a href="#novelties" class="nav-link">Новинки</a>
+                    <a href="#pricing" class="nav-link">Цены</a>
+                    <a href="#why" class="nav-link">Почему мы</a>
+                    <a href="#salons" class="nav-link">Салоны</a>
+                    <a href="#reviews" class="nav-link">Отзывы</a>
+                    <a href="#faq" class="nav-link">Вопросы</a>
+                    <a href="#appointment" class="nav-link btn-primary">Записаться</a>
+                </div>
+
+                <!-- Выбор города справа (вертикально) -->
+                <div class="city-switcher" role="group" aria-label="Выбор города">
+                    <button type="button" class="city-btn active" data-city="nnov">Нижний Новгород</button>
+                    <button type="button" class="city-btn" data-city="odintsovo">Одинцово</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-city">
+                    <span class="mobile-menu-city-label">Город:</span>
+                    <button type="button" class="city-btn active" data-city="nnov">Нижний Новгород</button>
+                    <button type="button" class="city-btn" data-city="odintsovo">Одинцово</button>
+                </div>
+                <a href="#" class="nav-link">Главная</a>
+                <a href="#novelties" class="nav-link">Новинки</a>
+                <a href="#pricing" class="nav-link">Цены</a>
+                <a href="#why" class="nav-link">Почему мы</a>
+                <a href="#salons" class="nav-link">Салоны</a>
+                <a href="#reviews" class="nav-link">Отзывы</a>
+                <a href="#faq" class="nav-link">Вопросы</a>
+                <a href="#appointment" class="nav-link btn-primary">Записаться</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Плашка: лучшая цена (по городу) -->
+    <div class="price-guarantee">
+        <div class="container price-guarantee-inner">
+            <span class="price-guarantee-icon">✓</span>
+            <span class="price-guarantee-text" data-city-content="nnov">Лучшая цена в Нижнем Новгороде — если найдёте дешевле, вернём разницу!</span>
+            <span class="price-guarantee-text" data-city-content="odintsovo">Лучшая цена в Одинцово — если найдёте дешевле, вернём разницу!</span>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Очки с линзами от 2&nbsp;900 ₽<br>
+                        <span class="hero-title-accent" data-city-content="nnov">в Нижнем Новгороде</span>
+                        <span class="hero-title-accent" data-city-content="odintsovo">в Одинцово</span>
+                    </h1>
+                    <p class="hero-description">
+                        Проверка зрения бесплатно • Честная цена • Оптика рядом с домом
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#appointment" class="btn btn-white">Записаться на проверку зрения</a>
+                        <a href="#pricing" class="btn btn-outline">Посмотреть цены</a>
+                    </div>
+                    <div class="hero-meta">
+                        <span class="hero-meta-badge">⭐ 4,8 из 5 по отзывам</span>
+                        <span class="hero-meta-badge" data-city-content="nnov">9 салонов в Нижнем Новгороде</span>
+                        <span class="hero-meta-badge" data-city-content="odintsovo">1 салон в Одинцово</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-decoration"></div>
+        </section>
+
+        <!-- Новинки: еженедельные поступления оправ -->
+        <section id="novelties" class="novelties">
+            <div class="container">
+                <div class="novelties-inner">
+                    <div class="novelties-content">
+                        <h2 class="novelties-title">Новинки оправ</h2>
+                        <p class="novelties-description">Еженедельные поступления новых оправ. Смотрите актуальные модели в наших соцсетях и выбирайте в салоне.</p>
+                        <div class="novelties-buttons">
+                            <a href="https://www.instagram.com/optika_dobrih_cen?igsh=aWM2NTZoeXI0cDE3" target="_blank" rel="noopener noreferrer" class="novelties-btn novelties-btn-insta">
+                                <svg class="novelties-btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                Смотреть в Instagram
+                            </a>
+                            <a href="https://vk.ru/optika_dobrih_cen" target="_blank" rel="noopener noreferrer" class="novelties-btn novelties-btn-vk">
+                                <svg class="novelties-btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.57 4 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.643 1.033-1.422 1.77-3.61 1.77-3.61.102-.22.322-.491.763-.491h1.744c.593 0 .728.305.593.677-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796 1.033 1.203 1.66.745.98 1.32 1.813 1.473 2.387.17.593-.085.894-.576.894z"/></svg>
+                                Смотреть ВКонтакте
+                            </a>
+                            <a href="https://t.me/optika_dobrih_cen" target="_blank" rel="noopener noreferrer" class="novelties-btn novelties-btn-tg">
+                                <svg class="novelties-btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                                Смотреть в Telegram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Почему честная цена -->
+        <section id="why" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Почему у нас честная цена</h2>
+                    <p class="section-description">
+                        Объясняем разницу между вариантами простым языком и сразу показываем, из чего складывается стоимость очков
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">➕</div>
+                        <h3 class="service-title">Понятная формула цены</h3>
+                        <p class="service-description">
+                            Цена очков = оправа + линзы + работа мастера. Никаких скрытых услуг и доплат в чеке.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🤝</div>
+                        <h3 class="service-title">Ничего не навязываем</h3>
+                        <p class="service-description">
+                            Показываем несколько комплектаций в разных бюджетах, вы спокойно выбираете то, что подходит именно вам.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">💬</div>
+                        <h3 class="service-title">Простое объяснение</h3>
+                        <p class="service-description">
+                            Рассказываем разницу между линзами «на пальцах», без сложных терминов. Вы понимаете, за что платите.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🧾</div>
+                        <h3 class="service-title">Решение после проверки зрения</h3>
+                        <p class="service-description">
+                            Сначала проверяем зрение, обсуждаем задачу, показываем варианты по цене — решение всегда остается за вами.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ценовые комплекты -->
+        <section id="pricing" class="catalog">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Ценовые комплекты очков</h2>
+                    <p class="section-description">
+                        Подберите очки под свою задачу и бюджет. Цена уже включает оправу, линзы и работу мастера.
+                    </p>
+                </div>
+
+                <div class="catalog-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=600&h=400&fit=crop" alt="Очки для чтения" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Для чтения</span>
+                            <h3 class="product-name">Очки для чтения</h3>
+                            <p class="product-price">от 2&nbsp;900 ₽</p>
+                            <p class="product-description">Простые и комфортные очки для книг, документов и телефона.</p>
+                            <button class="btn btn-product">Подойдет ли мне?</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="glasses-screen.png" alt="Очки для работы за экраном" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Для компьютера</span>
+                            <h3 class="product-name">Очки для работы за экраном</h3>
+                            <p class="product-price">от 3&nbsp;900 ₽</p>
+                            <p class="product-description">Снижают усталость глаз при работе за компьютером и с гаджетами.</p>
+                            <button class="btn btn-product">Подойдет ли мне?</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="glasses-universal.png" alt="Универсальные очки" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">На каждый день</span>
+                            <h3 class="product-name">Универсальные очки</h3>
+                            <p class="product-price">от 4&nbsp;900 ₽</p>
+                            <p class="product-description">Очки для повседневной носки — дом, улица, работа.</p>
+                            <button class="btn btn-product">Подойдет ли мне?</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="kids-glasses.png" alt="Детские очки" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Для детей</span>
+                            <h3 class="product-name">Детские очки</h3>
+                            <p class="product-price">от 3&nbsp;500 ₽</p>
+                            <p class="product-description">Легкие и удобные оправы, которые нравятся детям и родителям.</p>
+                            <button class="btn btn-product">Подойдет ли мне?</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image product-image--driver">
+                            <img src="driver-glasses.png" alt="Очки для водителей" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Для вождения</span>
+                            <h3 class="product-name">Очки для водителей</h3>
+                            <p class="product-price">от 4&nbsp;900 ₽</p>
+                            <p class="product-description">Комфортное и контрастное зрение за рулем днем и вечером.</p>
+                            <button class="btn btn-product">Подойдет ли мне?</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="glasses-outdoor.png" alt="Очки для улицы" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Улица / фотохром</span>
+                            <h3 class="product-name">Очки для улицы</h3>
+                            <p class="product-price">от 5&nbsp;900 ₽</p>
+                            <p class="product-description">Очки с затемнением для улицы или фотохромные линзы «2 в 1».</p>
+                            <button class="btn btn-product">Подойдет ли мне?</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="catalog-footer">
+                    <a href="#appointment" class="btn btn-primary">Записаться на подбор очков</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Наши салоны -->
+        <section id="salons" class="salons">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-city-content="nnov">Наши салоны в Нижнем Новгороде</h2>
+                    <h2 class="section-title" data-city-content="odintsovo">Наши салоны в Одинцово</h2>
+                    <p class="section-description">
+                        Выбирайте оптику, которая ближе к дому или работе
+                    </p>
+                </div>
+
+                <div class="salons-layout" data-city-content="nnov">
+                    <div class="salons-map">
+                        <div id="salons-map-nnov" class="salons-map-api" style="min-height: 400px; border-radius: 0.5rem;"></div>
+                        <iframe id="salons-iframe-nnov" class="salons-map-fallback" src="https://yandex.ru/map-widget/v1/?um=constructor%3A0eb72827e151722b13550bb8eb5ff209f7c9f3eb9432f57ceb63f0980b97c605&amp;source=constructor" width="100%" height="100%" frameborder="0" style="min-height: 400px; border-radius: 0.5rem;"></iframe>
+                    </div>
+                    <div class="salons-list">
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на проспекте Гагарина</div>
+                            <div class="salon-address">Нижний Новгород, проспект Гагарина, 184</div>
+                            <div class="salon-meta">Удобно для жителей Приокского и Советского районов</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, проспект Гагарина, 184" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на улице Дьяконова</div>
+                            <div class="salon-address">Нижний Новгород, улица Дьяконова, 24А</div>
+                            <div class="salon-meta">Рядом с жилыми домами, удобно зайти по пути домой</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, улица Дьяконова, 24А" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на улице Веденяпина</div>
+                            <div class="salon-address">Нижний Новгород, улица Веденяпина, 1А</div>
+                            <div class="salon-meta">Хороший вариант для жителей Московского района</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, улица Веденяпина, 1А" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на проспекте Ленина, 113</div>
+                            <div class="salon-address">Нижний Новгород, проспект Ленина, 113</div>
+                            <div class="salon-meta">Оптика рядом с ключевой магистралью города</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, проспект Ленина, 113" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на Бурнаковской</div>
+                            <div class="salon-address">Нижний Новгород, Бурнаковская улица, 103А</div>
+                            <div class="salon-meta">Удобен для жителей Бурнаковской и близлежащих домов</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, Бурнаковская улица, 103А" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на проспекте Ленина, 33</div>
+                            <div class="salon-address">Нижний Новгород, проспект Ленина, 33</div>
+                            <div class="salon-meta">Можно зайти по пути с работы или учёбы</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, проспект Ленина, 33" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на улице Бекетова</div>
+                            <div class="salon-address">Нижний Новгород, улица Бекетова, 66</div>
+                            <div class="salon-meta">Оптика в шаговой доступности для местных жителей</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, улица Бекетова, 66" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на улице Коминтерна</div>
+                            <div class="salon-address">Нижний Новгород, улица Коминтерна, 117</div>
+                            <div class="salon-meta">Удобно для семейных посещений • рядом остановки транспорта</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, улица Коминтерна, 117" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на проспекте Ленина, 76</div>
+                            <div class="salon-address">Нижний Новгород, проспект Ленина, 76</div>
+                            <div class="salon-meta">Оптика «по дороге» для жителей ближайших кварталов</div>
+                            <a class="salon-route-link" data-address="Нижний Новгород, проспект Ленина, 76" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="salons-layout" data-city-content="odintsovo">
+                    <div class="salons-map">
+                        <div id="salons-map-odintsovo" class="salons-map-api" style="min-height: 400px; border-radius: 0.5rem;"></div>
+                        <iframe id="salons-iframe-odintsovo" class="salons-map-fallback" src="https://yandex.ru/map-widget/v1/?ll=36.9805%2C55.6728&z=16&pt=36.9805,55.6728" width="100%" height="100%" frameborder="0" style="min-height: 400px; border-radius: 0.5rem;"></iframe>
+                    </div>
+                    <div class="salons-list">
+                        <div class="salon-card">
+                            <div class="salon-name">Салон на Можайском шоссе</div>
+                            <div class="salon-address">Московская область, Одинцовский городской округ, Одинцово, Можайское шоссе, 159</div>
+                            <div class="salon-meta">Центральный федеральный округ</div>
+                            <a class="salon-route-link" data-address="Одинцово, Можайское шоссе, 159" href="#" target="_blank" rel="noopener noreferrer">Построить маршрут</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Как выглядят наши салоны: фото из соцсетей -->
+        <section class="salons-photos">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Как выглядят наши салоны</h2>
+                    <p class="section-description">
+                        Фото интерьеров и атмосферы из наших соцсетей. Больше снимков — в Instagram и ВКонтакте.
+                    </p>
+                </div>
+                <div class="salons-photos-slider">
+                    <button type="button" class="salons-arrow salons-arrow--prev" aria-label="Предыдущее фото">
+                        <span aria-hidden="true">←</span>
+                    </button>
+                    <div class="salons-photos-viewport" id="salonsPhotosViewport">
+                        <div class="salons-photos-track" id="salonsPhotosTrack">
+                            <a href="https://www.instagram.com/optika_dobrih_cen?igsh=aWM2NTZoeXI0cDE3" target="_blank" rel="noopener noreferrer" class="salons-photo-link">
+                                <img src="salon1.png" alt="Интерьер салона — витрины с очками" loading="lazy">
+                            </a>
+                            <a href="https://www.instagram.com/optika_dobrih_cen?igsh=aWM2NTZoeXI0cDE3" target="_blank" rel="noopener noreferrer" class="salons-photo-link">
+                                <img src="salon2.png" alt="Вход в салон ОПТИКА ДОБРЫХ ЦЕН — вывеска и логотип" loading="lazy">
+                            </a>
+                            <a href="https://www.instagram.com/optika_dobrih_cen?igsh=aWM2NTZoeXI0cDE3" target="_blank" rel="noopener noreferrer" class="salons-photo-link">
+                                <img src="salon3.png" alt="Витрины и оформление салона" loading="lazy">
+                            </a>
+                            <a href="https://vk.ru/optika_dobrih_cen" target="_blank" rel="noopener noreferrer" class="salons-photo-link salons-photo-link--logo-top">
+                                <img src="salon4.png" alt="Салон — акция на солнцезащитные очки" loading="lazy">
+                            </a>
+                            <a href="https://vk.ru/optika_dobrih_cen" target="_blank" rel="noopener noreferrer" class="salons-photo-link">
+                                <img src="salon5.png" alt="Зал с витринами и кассой" loading="lazy">
+                            </a>
+                            <a href="https://www.instagram.com/optika_dobrih_cen?igsh=aWM2NTZoeXI0cDE3" target="_blank" rel="noopener noreferrer" class="salons-photo-link salons-photo-link--logo-top">
+                                <img src="salon6.png" alt="Вход в салон Оптика добрых цен" loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                    <button type="button" class="salons-arrow salons-arrow--next" aria-label="Следующее фото">
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы клиентов -->
+        <section id="reviews" class="reviews">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Что говорят клиенты</h2>
+                    <p class="section-description">
+                        К нам приходят, чтобы спокойно подобрать очки без навязывания и непонятных доплат
+                    </p>
+                </div>
+
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-rating">★★★★★</div>
+                        <p class="review-text">
+                            «Очень комфортно прошла проверка зрения, всё объяснили простым языком и подобрали очки под мой бюджет.»
+                        </p>
+                        <div class="review-author">Елена, 42 года</div>
+                        <div class="review-meta">Очки для работы за компьютером</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-rating">★★★★★</div>
+                        <p class="review-text">
+                            «Делали очки ребёнку. Спокойно, без давления, показали несколько вариантов, объяснили плюсы и минусы.»
+                        </p>
+                        <div class="review-author">Сергей, папа школьника</div>
+                        <div class="review-meta">Детские очки</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-rating">★★★★☆</div>
+                        <p class="review-text">
+                            «Нравится, что сразу называют полную цену за комплект, без сюрпризов на кассе. Очки сделали быстро.»
+                        </p>
+                        <div class="review-author">Ирина, 55 лет</div>
+                        <div class="review-meta">Очки для чтения и улицы</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Часто задаваемые вопросы -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Часто задаваемые вопросы</h2>
+                    <p class="section-description">
+                        Ответы на популярные вопросы о проверке зрения, подборе очков и ценах
+                    </p>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-question">Проверка зрения платная?</summary>
+                        <p class="faq-answer">Нет. Проверка зрения у нас бесплатная. После проверки вы решаете сами — заказывать очки или нет, мы ничего не навязываем.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Что входит в цену очков?</summary>
+                        <p class="faq-answer">В указанную цену входит оправа, линзы и работа мастера (установка линз в оправу). Дополнительных скрытых платежей нет.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Сколько делаются очки?</summary>
+                        <p class="faq-answer">Обычно от 3 до 7 рабочих дней в зависимости от сложности и наличия линз. Точные сроки подскажут в салоне при заказе.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Можно ли прийти с ребёнком?</summary>
+                        <p class="faq-answer">Да. Мы подбираем очки и для детей — у нас есть детские оправы и спокойная атмосфера. Запись поможет избежать ожидания.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Нужна ли запись на проверку зрения?</summary>
+                        <p class="faq-answer">Запись желательна: так мы подберём удобное время и вам не придётся ждать. Прийти без записи тоже можно — примём по возможности.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Где посмотреть новинки оправ?</summary>
+                        <p class="faq-answer">Новые поступления мы показываем в Instagram, ВКонтакте и Telegram. Там же можно написать и задать вопросы.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appointment Form Section -->
+        <section id="appointment" class="appointment">
+            <div class="container">
+                <div class="appointment-content">
+                    <div class="appointment-header">
+                        <h2 class="appointment-title">Записаться на проверку зрения</h2>
+                        <p class="appointment-description">
+                            Проверка зрения бесплатно и без обязательной покупки очков. Мы перезвоним, чтобы уточнить удобное время и салон.
+                        </p>
+                    </div>
+
+                    <form class="appointment-form" id="appointmentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Имя *</label>
+                                <input type="text" id="name" name="name" class="form-input" required placeholder="Ваше имя">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Телефон *</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+7 (999) 123-45-67">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date" class="form-label">Предпочтительная дата</label>
+                                <input type="date" id="date" name="date" class="form-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="time" class="form-label">Предпочтительное время</label>
+                                <input type="time" id="time" name="time" class="form-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Комментарий</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Дополнительная информация..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Записаться на проверку зрения</button>
+
+                        <p class="form-note">* Поля обязательны для заполнения</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <!-- Финальный призыв -->
+        <section class="cta-final">
+            <div class="container">
+                <div class="cta-final-inner">
+                    <div>
+                        <h2 class="cta-final-title">Подберем очки под ваше зрение и бюджет</h2>
+                        <p class="cta-final-text">
+                            Оставьте заявку — подберем несколько вариантов очков, объясним разницу по цене и поможем принять спокойное решение.
+                        </p>
+                    </div>
+                    <a href="#appointment" class="btn btn-primary">Записаться на проверку зрения</a>
+                </div>
+            </div>
+        </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3 class="footer-title">Оптика добрых цен</h3>
+                    <p class="footer-description">
+                        Ваше зрение - наш приоритет. Качественные очки и линзы для комфортной жизни.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/optika_dobrih_cen?igsh=aWM2NTZoeXI0cDE3" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Мы в Instagram">
+                            <svg class="footer-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            Instagram
+                        </a>
+                        <a href="https://vk.ru/optika_dobrih_cen" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Мы ВКонтакте">
+                            <svg class="footer-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.57 4 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.643 1.033-1.422 1.77-3.61 1.77-3.61.102-.22.322-.491.763-.491h1.744c.593 0 .728.305.593.677-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796 1.033 1.203 1.66.745.98 1.32 1.813 1.473 2.387.17.593-.085.894-.576.894z"/></svg>
+                            ВКонтакте
+                        </a>
+                        <a href="https://t.me/optika_dobrih_cen" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Мы в Telegram">
+                            <svg class="footer-social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#pricing">Цены</a></li>
+                        <li><a href="#why">Почему мы</a></li>
+                        <li><a href="#salons">Салоны</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Контакты</h4>
+                    <ul class="footer-links" data-city-content="nnov">
+                        <li>📞 +7 (831) 123-45-67</li>
+                        <li>✉️ info@optika.ru</li>
+                        <li>📍 Нижний Новгород</li>
+                    </ul>
+                    <ul class="footer-links" data-city-content="odintsovo">
+                        <li>📞 +7 (977) 885-52-50</li>
+                        <li>✉️ info@optika.ru</li>
+                        <li>📍 Одинцово, Можайское шоссе, 159</li>
+                        <li><a href="https://t.me/optika_dobrih_cen" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+                        <li><a href="https://vk.ru/optika_dobrih_cen" target="_blank" rel="noopener noreferrer">ВКонтакте</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Режим работы</h4>
+                    <ul class="footer-links">
+                        <li>Пн-Вс: 10:00 – 20:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Оптика. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Замените ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ на ключ с https://developer.tech.yandex.ru/ (JavaScript API и HTTP Геокодер) -->
+    <script>window.YANDEX_MAPS_API_KEY = 'ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ';</script>
+    <script src="script.js"></script>
+</body>
+</html>

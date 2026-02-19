@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" role="img" aria-label="Optika dobrykh tsen">
+  <defs>
+    <style>
+      .logo-optika { font: bold 42px sans-serif; fill: #e08b2e; letter-spacing: 0.02em; }
+      .logo-badge-text { font: bold 14px sans-serif; fill: #fff; letter-spacing: 0.04em; }
+    </style>
+  </defs>
+
+  <!-- Eye: lashes, eyeball, pupil, highlight -->
+  <g transform="translate(4, 18)">
+    <path fill="none" stroke="#8B4513" stroke-width="2" stroke-linecap="round" d="M16 10 Q12 4 8 6 M22 8 Q20 2 18 4 M28 10 Q28 2 30 4 M34 14 Q38 6 40 8 M36 22 Q42 14 44 16"/>
+    <ellipse cx="28" cy="30" rx="22" ry="15" fill="#c9a882" stroke="#8B4513" stroke-width="2.5"/>
+    <ellipse cx="28" cy="30" rx="11" ry="7.5" fill="#5c4033"/>
+    <circle cx="24" cy="27" r="2.2" fill="rgba(255,255,255,0.9)"/>
+  </g>
+
+  <!-- OPTIKA text -->
+  <text x="72" y="52" class="logo-optika">&#1054;&#1055;&#1058;&#1048;&#1050;&#1040;</text>
+
+  <!-- Badge DOBRYKH TSEN -->
+  <g transform="translate(72, 58)">
+    <rect width="120" height="22" rx="6" fill="#4a331b"/>
+    <text x="60" y="15.5" class="logo-badge-text" text-anchor="middle">&#1044;&#1054;&#1041;&#1056;&#1067;&#1061; &#1062;&#1045;&#1053;</text>
+  </g>
+</svg>
