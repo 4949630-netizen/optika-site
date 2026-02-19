@@ -2,12 +2,19 @@
 const CITY_STORAGE_KEY = 'optika_city';
 const defaultCity = 'nnov';
 
+var FLOAT_PHONE_NUMBERS = { nnov: 'tel:+78311234567', odintsovo: 'tel:+79778855250' };
+
 function setActiveCity(cityId) {
     document.querySelectorAll('.city-btn').forEach(btn => {
         btn.classList.toggle('active', btn.getAttribute('data-city') === cityId);
     });
     document.body.setAttribute('data-current-city', cityId);
     try { localStorage.setItem(CITY_STORAGE_KEY, cityId); } catch (e) {}
+    var phoneBtn = document.getElementById('floatPhoneBtn');
+    if (phoneBtn && FLOAT_PHONE_NUMBERS[cityId]) {
+        phoneBtn.href = FLOAT_PHONE_NUMBERS[cityId];
+        phoneBtn.setAttribute('aria-label', cityId === 'odintsovo' ? 'Позвонить в Одинцово' : 'Позвонить в Нижнем Новгороде');
+    }
 }
 
 document.querySelectorAll('.city-btn').forEach(btn => {
