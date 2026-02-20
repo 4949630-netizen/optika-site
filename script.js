@@ -36,13 +36,13 @@ document.querySelectorAll('.city-btn').forEach(btn => {
     }
 })();
 
-// Ссылки «Построить маршрут» — маршрут от текущего местоположения до точки по координатам (rtext=~долгота,широта)
-// Текстовый адрес в rtext Яндекс иногда распознаёт неверно, поэтому используем точные координаты из data-lat, data-lon
+// Ссылки «Построить маршрут» — маршрут от текущего местоположения до салона
+// В rtext Яндекс.Карты порядок: широта, долгота (lat,lon). Иначе точка уезжает (например в район Устюрта)
 document.querySelectorAll('.salon-route-link').forEach(function (link) {
     var lat = link.getAttribute('data-lat');
     var lon = link.getAttribute('data-lon');
     if (lat && lon) {
-        link.href = 'https://yandex.ru/maps/?rtext=~' + lon + '%2C' + lat;
+        link.href = 'https://yandex.ru/maps/?rtext=~' + lat + '%2C' + lon;
     }
 });
 
