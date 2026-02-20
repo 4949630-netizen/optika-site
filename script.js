@@ -36,12 +36,12 @@ document.querySelectorAll('.city-btn').forEach(btn => {
     }
 })();
 
-// Ссылки «Построить маршрут» — открывают Яндекс.Карты: маршрут от текущего местоположения до адреса
+// Ссылки «Построить маршрут» — открывают Яндекс.Карты: маршрут от текущего местоположения до точки (rtext принимает только координаты)
 document.querySelectorAll('.salon-route-link').forEach(function (link) {
-    const address = link.getAttribute('data-address');
-    if (address) {
-        // rtext=~адрес — маршрут «от меня» до точки (тильда = пустая начальная точка)
-        link.href = 'https://yandex.ru/maps/?rtext=~' + encodeURIComponent(address);
+    const lat = link.getAttribute('data-lat');
+    const lon = link.getAttribute('data-lon');
+    if (lat && lon) {
+        link.href = 'https://yandex.ru/maps/?rtext=~' + lat + '%2C' + lon;
     }
 });
 
