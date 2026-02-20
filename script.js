@@ -36,15 +36,19 @@ document.querySelectorAll('.city-btn').forEach(btn => {
     }
 })();
 
-// Ссылки «Построить маршрут» — открывают Яндекс.Карты: маршрут от текущего местоположения до точки
-// В URL Яндекс.Карт порядок координат: долгота, широта (lon,lat)
-document.querySelectorAll('.salon-route-link').forEach(function (link) {
-    const lat = link.getAttribute('data-lat');
-    const lon = link.getAttribute('data-lon');
-    if (lat && lon) {
-        link.href = 'https://yandex.ru/maps/?rtext=~' + lon + '%2C' + lat;
-    }
-});
+// Ссылки «Построить маршрут» — маршрут от текущего местоположения до салона
+// Веб (ПК): rtext=~ долгота,широта (lon,lat). Мобильное приложение: rtext=~ широта,долгота (lat,lon)
+(function () {
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    document.querySelectorAll('.salon-route-link').forEach(function (link) {
+        var lat = link.getAttribute('data-lat');
+        var lon = link.getAttribute('data-lon');
+        if (lat && lon) {
+            var coords = isMobile ? lat + '%2C' + lon : lon + '%2C' + lat;
+            link.href = 'https://yandex.ru/maps/?rtext=~' + coords;
+        }
+    });
+})();
 
 // Mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
