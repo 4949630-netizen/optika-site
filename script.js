@@ -36,20 +36,14 @@ document.querySelectorAll('.city-btn').forEach(btn => {
     }
 })();
 
-// Ссылки «Построить маршрут» — маршрут от текущего местоположения до салона
-// Веб (ПК): долгота, широта (lon,lat). Мобильное приложение Яндекс.Карты: широта, долгота (lat,lon)
-(function () {
-    var ua = navigator.userAgent || '';
-    var isMobile = /Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua) || /iPhone|iPod/i.test(ua) && !/iPad/i.test(ua) || /iPad/i.test(ua);
-    document.querySelectorAll('.salon-route-link').forEach(function (link) {
-        var lat = link.getAttribute('data-lat');
-        var lon = link.getAttribute('data-lon');
-        if (lat && lon) {
-            var coords = isMobile ? (lat + '%2C' + lon) : (lon + '%2C' + lat);
-            link.href = 'https://yandex.ru/maps/?rtext=~' + coords;
-        }
-    });
-})();
+// Ссылки «Построить маршрут» — открывают Яндекс.Карты по адресу (без координат, чтобы везде был верный адрес)
+// Яндекс сам находит точку по тексту адреса — одинаково на ПК и телефоне
+document.querySelectorAll('.salon-route-link').forEach(function (link) {
+    var address = link.getAttribute('data-address');
+    if (address) {
+        link.href = 'https://yandex.ru/maps/?text=' + encodeURIComponent(address);
+    }
+});
 
 // Mobile menu toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
