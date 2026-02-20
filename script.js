@@ -36,12 +36,11 @@ document.querySelectorAll('.city-btn').forEach(btn => {
     }
 })();
 
-// Ссылки «Построить маршрут» — открывают Яндекс.Карты по адресу (без координат, чтобы везде был верный адрес)
-// Яндекс сам находит точку по тексту адреса — одинаково на ПК и телефоне
+// Ссылки «Построить маршрут» — открывают Яндекс.Карты с адресом салона (как было изначально)
 document.querySelectorAll('.salon-route-link').forEach(function (link) {
     var address = link.getAttribute('data-address');
     if (address) {
-        link.href = 'https://yandex.ru/maps/?text=' + encodeURIComponent(address);
+        link.href = 'https://yandex.ru/maps/?rtext=' + encodeURIComponent(address);
     }
 });
 
