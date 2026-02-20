@@ -102,7 +102,7 @@ body[data-current-city="odintsovo"] [data-city-content="nnov"] {
 }
 
 .nav {
-    padding: 16px 0;
+    padding: 8px 0;
 }
 
 .nav-content {
@@ -169,7 +169,7 @@ body[data-current-city="odintsovo"] [data-city-content="nnov"] {
 
 .logo-img {
     display: block;
-    height: 110px;
+    height: 130px;
     width: auto;
     object-fit: contain;
     object-position: left center;
@@ -180,7 +180,7 @@ body[data-current-city="odintsovo"] [data-city-content="nnov"] {
         margin-left: 0;
     }
     .logo-img {
-        height: 72px;
+        height: 84px;
     }
 }
 
