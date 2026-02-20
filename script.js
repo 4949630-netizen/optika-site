@@ -36,11 +36,13 @@ document.querySelectorAll('.city-btn').forEach(btn => {
     }
 })();
 
-// Ссылки «Построить маршрут» — открывают Яндекс.Карты с адресом салона (как было изначально)
+// Ссылки «Построить маршрут» — маршрут от текущего местоположения до точки по координатам (rtext=~долгота,широта)
+// Текстовый адрес в rtext Яндекс иногда распознаёт неверно, поэтому используем точные координаты из data-lat, data-lon
 document.querySelectorAll('.salon-route-link').forEach(function (link) {
-    var address = link.getAttribute('data-address');
-    if (address) {
-        link.href = 'https://yandex.ru/maps/?rtext=' + encodeURIComponent(address);
+    var lat = link.getAttribute('data-lat');
+    var lon = link.getAttribute('data-lon');
+    if (lat && lon) {
+        link.href = 'https://yandex.ru/maps/?rtext=~' + lon + '%2C' + lat;
     }
 });
 
