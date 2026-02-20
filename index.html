@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Оптика добрых цен — Очки с линзами в Нижнем Новгороде и Одинцово</title>
-    <meta name="description" content="Оптика добрых цен — очки с линзами по честной цене в Нижнем Новгороде и Одинцово. Проверка зрения бесплатно. Оправы для чтения, компьютера, улицы и детей.">
+    <meta name="description" content="Оптика добрых цен — очки с линзами по честной цене в Нижнем Новгороде и Одинцово. Проверка зрения бесплатно. Подбор очков, линзы, оправы, ремонт очков.">
+    <meta name="keywords" content="оптика, очки, очки с линзами, проверка зрения, линзы, оправы, ремонт очков, подбор очков, Нижний Новгород, Одинцово">
     <meta name="yandex-verification" content="1da545ad0cf9aa67">
     <meta name="google-site-verification" content="X0LQv6JFl8nMPqRqqTGN4rFCZao6JBHLZngWJaRei5M">
     <link rel="icon" type="image/png" href="logo.png">
@@ -21,19 +22,20 @@
     <meta name="twitter:description" content="Очки с линзами по честной цене. Проверка зрения бесплатно. Нижний Новгород и Одинцово.">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body data-current-city="nnov">
+<body data-current-city="nnov" id="top">
     <!-- Header -->
     <header class="header">
         <nav class="nav container">
             <div class="nav-content">
-                <a href="#" class="logo" title="Оптика добрых цен">
+                <a href="#top" class="logo" title="Оптика добрых цен">
                     <img src="logo.png" alt="Оптика добрых цен" class="logo-img">
                 </a>
 
                 <!-- Desktop Menu (центр) -->
                 <div class="nav-menu desktop-menu">
-                    <a href="#" class="nav-link">Главная</a>
+                    <a href="#top" class="nav-link">Главная</a>
                     <a href="#novelties" class="nav-link">Новинки</a>
+                    <a href="#promos" class="nav-link">Акции</a>
                     <a href="#pricing" class="nav-link">Цены</a>
                     <a href="#why" class="nav-link">Почему мы</a>
                     <a href="#salons" class="nav-link">Салоны</a>
@@ -63,8 +65,9 @@
                     <button type="button" class="city-btn active" data-city="nnov">Нижний Новгород</button>
                     <button type="button" class="city-btn" data-city="odintsovo">Одинцово</button>
                 </div>
-                <a href="#" class="nav-link">Главная</a>
+                <a href="#top" class="nav-link">Главная</a>
                 <a href="#novelties" class="nav-link">Новинки</a>
+                <a href="#promos" class="nav-link">Акции</a>
                 <a href="#pricing" class="nav-link">Цены</a>
                 <a href="#why" class="nav-link">Почему мы</a>
                 <a href="#salons" class="nav-link">Салоны</a>
@@ -133,6 +136,50 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Акции -->
+        <section id="promos" class="promos">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Акции</h2>
+                    <p class="section-description">
+                        Специальные предложения во всех салонах «Оптика добрых цен»
+                    </p>
+                </div>
+                <div class="promos-grid">
+                    <div class="promo-card">
+                        <a href="#appointment" class="promo-card-link">
+                            <img src="promo-free-vision.png" alt="Проверка зрения бесплатно" class="promo-card-img" loading="lazy">
+                            <div class="promo-card-content">
+                                <h3 class="promo-card-title">Проверка зрения бесплатно</h3>
+                                <p class="promo-card-desc">Во всех салонах. Для лиц старше 18 лет.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="promo-card">
+                        <a href="#appointment" class="promo-card-link">
+                            <img src="promo-pensioners.png" alt="Скидка для пенсионеров 500 ₽" class="promo-card-img" loading="lazy">
+                            <div class="promo-card-content">
+                                <h3 class="promo-card-title">Скидка для пенсионеров 500 ₽</h3>
+                                <p class="promo-card-desc">На очки с линзами в наших салонах.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="promo-card">
+                        <a href="#appointment" class="promo-card-link">
+                            <img src="promo-thin-lenses.png" alt="Скидка 20% на супертонкие линзы" class="promo-card-img" loading="lazy">
+                            <div class="promo-card-content">
+                                <h3 class="promo-card-title">Скидка 20% на супертонкие линзы</h3>
+                                <p class="promo-card-desc">Утончайся! Скидки по акциям не суммируются.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="promos-cta">
+                    <a href="#appointment" class="btn btn-primary">Записаться на приём</a>
                 </div>
             </div>
         </section>
@@ -587,8 +634,9 @@
                 <div class="footer-column">
                     <h4 class="footer-heading">Навигация</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Главная</a></li>
+                        <li><a href="#top">Главная</a></li>
                         <li><a href="#pricing">Цены</a></li>
+                        <li><a href="#promos">Акции</a></li>
                         <li><a href="#why">Почему мы</a></li>
                         <li><a href="#salons">Салоны</a></li>
                         <li><a href="politika-konfidencialnosti.html">Политика конфиденциальности</a></li>
@@ -632,7 +680,7 @@
     </a>
 
     <!-- Замените ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ на ключ с https://developer.tech.yandex.ru/ (JavaScript API и HTTP Геокодер) -->
-    <script>window.YANDEX_MAPS_API_KEY = 'ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ';</script>
+    <script>window.YANDEX_MAPS_API_KEY = '5c541c1d-a961-447a-8bdd-05dd6c9009f5';</script>
     <script src="script.js"></script>
 </body>
 </html>
