@@ -169,7 +169,7 @@ body[data-current-city="odintsovo"] [data-city-content="nnov"] {
 
 .logo-img {
     display: block;
-    height: 80px;
+    height: 110px;
     width: auto;
     object-fit: contain;
     object-position: left center;
@@ -180,7 +180,7 @@ body[data-current-city="odintsovo"] [data-city-content="nnov"] {
         margin-left: 0;
     }
     .logo-img {
-        height: 60px;
+        height: 72px;
     }
 }
 
@@ -724,10 +724,55 @@ body[data-current-city="odintsovo"] [data-city-content="nnov"] {
     color: var(--accent-orange);
 }
 
+.promo-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.promo-card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: top;
+    background: var(--gray-100);
+}
+
+.promo-card-content {
+    padding: 1.25rem;
+}
+
+.promo-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+}
+
+.promo-card-desc {
+    font-size: 0.9375rem;
+    color: var(--gray-600);
+    line-height: 1.45;
+    margin: 0;
+}
+
+.promos-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
 @media (min-width: 640px) {
     .promos-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .promos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
     }
 }
 

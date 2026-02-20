@@ -166,6 +166,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (href === '#') return;
         
         e.preventDefault();
+        if (href === '#top') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
         const target = document.querySelector(href);
         
         if (target) {
@@ -174,7 +178,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
             window.scrollTo({
-                top: offsetPosition,
+                top: Math.max(0, offsetPosition),
                 behavior: 'smooth'
             });
         }
@@ -197,7 +201,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.service-card, .product-card, .gallery-item').forEach(el => {
+document.querySelectorAll('.service-card, .product-card, .gallery-item, .promo-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
