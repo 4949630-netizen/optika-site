@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Не индексировать служебную страницу превью (по желанию можно удалить эти строки)
+Disallow: /preview-mobile.html
+
+Sitemap: https://optikadobryhcen.ru/sitemap.xml

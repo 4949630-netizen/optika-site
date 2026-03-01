@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Превью: как сайт выглядит на телефоне</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .preview-label {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            text-align: center;
+        }
+        .phone-wrap {
+            width: 375px;
+            height: 812px;
+            background: #111;
+            border-radius: 44px;
+            padding: 12px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 0 2px #333;
+            position: relative;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 28px;
+            background: #111;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 34px;
+            overflow: hidden;
+        }
+        .phone-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <p class="preview-label">Как сайт выглядит на телефоне (iPhone-размер 375×812)</p>
+    <div class="phone-wrap">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+            <iframe src="index.html" title="Сайт оптики"></iframe>
+        </div>
+    </div>
+</body>
+</html>
