@@ -31,7 +31,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/
+          server-dir: /www/optikadobryhcen.ru/
 ```
 
 4. Внизу страницы нажмите **Commit changes** → **Commit new file**.
@@ -47,7 +47,7 @@ jobs:
    - **Логин** — ваш FTP-пользователь.
    - **Пароль** — пароль от FTP (часто такой же, как у панели хостинга).
 
-Папка сайта на хостинге обычно: **public_html**. Если у вас другая — замените в workflow строку `server-dir: /public_html/` на вашу папку (например `/www/` или как указано в REG.RU).
+Корневая директория сайта optikadobryhcen.ru в ispmanager: **/www/optikadobryhcen.ru/** — в workflow указан именно этот путь.
 
 ---
 

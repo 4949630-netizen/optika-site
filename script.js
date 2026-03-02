@@ -1,6 +1,18 @@
+// Цели Яндекс.Метрики (идентификаторы должны совпадать с целями в настройках счётчика)
+var METRIKA_ID = 107063229;
+function metrikaGoal(id) {
+    if (typeof ym === 'function') ym(METRIKA_ID, 'reachGoal', id);
+}
+
+// Цель «Записаться» — клик по любой кнопке/ссылке записи
+document.querySelectorAll('a[href="#appointment"]').forEach(function (el) {
+    el.addEventListener('click', function () { metrikaGoal('zapis'); });
+});
+
 // Ссылки «Построить маршрут» — маршрут от текущего местоположения до салона
 // В rtext Яндекс.Карты порядок: широта, долгота (lat,lon). Иначе точка уезжает (например в район Устюрта)
 document.querySelectorAll('.salon-route-link').forEach(function (link) {
+    link.addEventListener('click', function () { metrikaGoal('marshrut'); });
     var lat = link.getAttribute('data-lat');
     var lon = link.getAttribute('data-lon');
     if (lat && lon) {
@@ -26,22 +38,60 @@ mobileMenuLinks?.forEach(link => {
     });
 });
 
+// Отправка заявок на info@optikadobryhcen.ru (переадресация на Info@ofta-group.ru в ispmanager).
+var FORM_HANDLER = 'php'; // send-form.php на хостинге
+var FORMSPREE_FORM_ID = '';
+
 // Form submission
 const appointmentForm = document.getElementById('appointmentForm');
 if (appointmentForm) {
     appointmentForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        const formData = new FormData(appointmentForm);
-        const data = Object.fromEntries(formData);
-        
-        // Здесь можно добавить отправку данных на сервер
-        console.log('Form data:', data);
-        
-        alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-        
-        // Очистка формы
-        appointmentForm.reset();
+
+        var submitBtn = appointmentForm.querySelector('button[type="submit"]');
+        var btnText = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка…';
+        }
+
+        var formData = new FormData(appointmentForm);
+        var url = (FORM_HANDLER === 'formspree' && FORMSPREE_FORM_ID)
+            ? 'https://formspree.io/f/' + FORMSPREE_FORM_ID
+            : (window.location.origin + '/send-form.php');
+        if (FORM_HANDLER === 'formspree' && FORMSPREE_FORM_ID) {
+            formData.append('_subject', 'Новая заявка с сайта optikadobryhcen.ru');
+        }
+
+        fetch(url, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+            return r.text().then(function (text) {
+                var data;
+                try {
+                    data = text ? JSON.parse(text) : {};
+                } catch (e) {
+                    if (!r.ok) {
+                        alert('Ошибка ' + r.status + ': файл send-form.php не найден или ошибка на сервере. Проверьте, что send-form.php загружен в корень сайта.');
+                        return;
+                    }
+                    alert('Сервер вернул неверный ответ. Откройте в браузере: ' + url);
+                    return;
+                }
+                if (data.ok || data.success) {
+                    if (typeof ym === 'function') ym(107063229, 'reachGoal', 'forma_zapis');
+                    alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+                    appointmentForm.reset();
+                } else {
+                    alert((data.error || 'Ошибка отправки') + '. Позвоните нам: +7 (831) 123-45-67');
+                }
+            });
+        })
+        .catch(function (e) {
+            alert('Не удалось отправить заявку (сеть или сервер). Проверьте, что send-form.php есть на сайте. Позвоните нам: +7 (831) 123-45-67');
+        })
+        .finally(function () {
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = btnText; }
+        });
     });
 }
 
