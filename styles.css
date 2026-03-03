@@ -657,6 +657,9 @@ body {
     line-height: 1.5;
     font-size: 1rem;
 }
+.frames-list li {
+    font-size: 1rem;
+}
 
 .frames-consult {
     font-size: 1rem;
@@ -720,6 +723,9 @@ body {
     }
     .frames-list,
     .frames-consult {
+        font-size: 1.125rem;
+    }
+    .frames-list li {
         font-size: 1.125rem;
     }
     .frames-list {
