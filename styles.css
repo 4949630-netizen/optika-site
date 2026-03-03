@@ -926,10 +926,10 @@ body {
     }
 }
 
-/* Services Section */
+/* Services Section — «Очки без сюрпризов в чеке» */
 .services {
     padding: 2.5rem 0;
-    background: var(--bg-warm);
+    background: #fff;
 }
 
 .services-grid {
@@ -963,7 +963,7 @@ body {
 }
 
 .service-icon {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     margin-bottom: 0.75rem;
 }
 
@@ -975,10 +975,11 @@ body {
 }
 
 .service-icon-img svg {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.75rem;
+    height: 1.75rem;
     flex-shrink: 0;
     color: inherit;
+    max-width: 100%;
 }
 
 .service-title {
@@ -1013,11 +1014,11 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     .service-icon {
-        font-size: 3rem;
+        font-size: 2.25rem;
     }
     .service-icon-img svg {
-        width: 3rem;
-        height: 3rem;
+        width: 2.25rem;
+        height: 2.25rem;
     }
     .service-title {
         font-size: 1.25rem;
@@ -1214,13 +1215,14 @@ body {
 }
 
 .confidence-icon-img svg {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 .confidence-inner > .confidence-icon-img {
     display: block;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    max-width: 100%;
     margin: 0 auto 0.75rem;
     object-fit: contain;
 }
