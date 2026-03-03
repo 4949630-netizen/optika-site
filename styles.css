@@ -710,10 +710,11 @@ body {
         font-size: 1.125rem;
         margin-bottom: 2rem;
     }
+    /* Та же ширина колонки, что у .frames-intro (36rem), чтобы размер текста визуально совпадал */
     .frames-list-title,
     .frames-list,
     .frames-consult {
-        max-width: 28rem;
+        max-width: 36rem;
         margin-left: auto;
         margin-right: auto;
     }
@@ -733,7 +734,7 @@ body {
         margin-right: auto;
         margin-bottom: 1rem;
         padding-left: 1.5rem;
-        max-width: 20rem;
+        max-width: 36rem;
     }
     .frames-consult {
         text-align: center;
