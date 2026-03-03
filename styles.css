@@ -612,8 +612,8 @@ body {
     text-align: center;
     max-width: 36rem;
     margin: 0 auto 1.25rem;
-    font-size: 0.9375rem;
-    color: var(--gray-700);
+    font-size: 1rem;
+    color: var(--gray-600);
     line-height: 1.5;
 }
 
@@ -652,14 +652,14 @@ body {
 .frames-list {
     margin: 0 0 1rem;
     padding-left: 1.25rem;
-    color: var(--gray-700);
+    color: var(--gray-600);
     line-height: 1.6;
-    font-size: 0.9375rem;
+    font-size: 1rem;
 }
 
 .frames-consult {
-    font-size: 0.9375rem;
-    color: var(--gray-700);
+    font-size: 1rem;
+    color: var(--gray-600);
     line-height: 1.5;
     margin: 0 0 1.5rem;
 }
@@ -703,7 +703,7 @@ body {
         padding: 4rem 0;
     }
     .frames-intro {
-        font-size: 1.0625rem;
+        font-size: 1.125rem;
         margin-bottom: 2rem;
     }
     .frames-list-title,
@@ -715,7 +715,11 @@ body {
     }
     .frames-list-title {
         text-align: center;
-        font-size: 1.0625rem;
+        font-size: 1.125rem;
+    }
+    .frames-list,
+    .frames-consult {
+        font-size: 1.125rem;
     }
     .frames-list {
         margin-left: auto;
