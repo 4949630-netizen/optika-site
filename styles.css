@@ -966,6 +966,20 @@ body {
     margin-bottom: 0.75rem;
 }
 
+.service-icon-img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-600, #ea580c);
+}
+
+.service-icon-img svg {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    color: inherit;
+}
+
 .service-title {
     font-size: 1.125rem;
     font-weight: 600;
@@ -999,6 +1013,10 @@ body {
     }
     .service-icon {
         font-size: 3rem;
+    }
+    .service-icon-img svg {
+        width: 3rem;
+        height: 3rem;
     }
     .service-title {
         font-size: 1.25rem;
@@ -1165,7 +1183,7 @@ body {
 /* Блок уверенности: защита цены */
 .confidence {
     padding: 2.5rem 0;
-    background: var(--bg-warm);
+    background: #fff;
 }
 
 .confidence-inner {
@@ -1178,6 +1196,32 @@ body {
     font-size: 2.5rem;
     margin-bottom: 0.75rem;
     line-height: 1;
+}
+
+.confidence-icon-img {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-600, #ea580c);
+    font-size: 0;
+    overflow: hidden;
+}
+.confidence-icon-img::before,
+.confidence-icon-img::after {
+    display: none !important;
+    content: none !important;
+}
+
+.confidence-icon-img svg {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.confidence-inner > .confidence-icon-img {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 0.75rem;
+    object-fit: contain;
 }
 
 .confidence-title {
@@ -1477,8 +1521,9 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9375rem;
-    color: var(--gray-600);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--gray-700);
     margin: 0 0 1.25rem;
 }
 
@@ -1557,13 +1602,22 @@ body {
 }
 
 .form-privacy--card {
-    font-size: 0.8125rem;
-    color: var(--gray-500);
-    margin-top: 1rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #111;
+    margin-top: 1.25rem;
+    line-height: 1.45;
 }
 
 .form-privacy--card a {
     color: var(--primary-600);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.form-privacy--card a:hover {
+    color: var(--primary-700);
 }
 
 .form-row {
@@ -1668,6 +1722,23 @@ body {
 
 .form-privacy a:hover {
     color: var(--primary-50);
+}
+
+/* Надпись о персональных данных в карточке записи — всегда тёмная и заметная */
+.appointment-form .form-privacy.form-privacy--card {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111;
+    margin-top: 1.25rem;
+}
+.appointment-form .form-privacy.form-privacy--card a {
+    color: var(--primary-600);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.appointment-form .form-privacy.form-privacy--card a:hover {
+    color: var(--primary-700);
 }
 
 @media (min-width: 640px) {
@@ -1884,6 +1955,12 @@ body {
     white-space: nowrap;
 }
 
+@media (min-width: 768px) {
+    .float-phone-btn {
+        display: none !important;
+    }
+}
+
 @media (max-width: 480px) {
     .float-phone-btn {
         right: 1rem;
@@ -1906,6 +1983,14 @@ body {
     background: #fff;
 }
 
+.reviews-rating-highlight {
+    color: var(--primary-600, #ea580c);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0.75rem 0 0;
+    text-align: center;
+}
+
 .reviews-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1914,6 +1999,8 @@ body {
 }
 
 .review-card {
+    display: flex;
+    flex-direction: column;
     background: #ffffff;
     border-radius: 0.75rem;
     padding: 1.25rem;
@@ -1928,6 +2015,8 @@ body {
 }
 
 .review-text {
+    flex: 1;
+    min-height: 0;
     font-size: 0.9375rem;
     color: var(--gray-700);
     margin-bottom: 0.75rem;
@@ -1938,12 +2027,19 @@ body {
     font-size: 1rem;
     font-weight: 600;
     color: var(--gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.review-name {
+    color: var(--primary-600, #ea580c);
+    font-weight: 700;
 }
 
 .review-meta {
     font-size: 0.8125rem;
     color: var(--gray-500);
-    margin-top: 0.25rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
 }
 
 .review-source-link {
@@ -1998,6 +2094,51 @@ body {
     background: var(--bg-warm-strong);
 }
 
+.salons-map-select-wrap {
+    margin-bottom: 1rem;
+}
+
+.salons-map-select-label {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.salons-map-select {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    min-height: 48px;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-weight: 500;
+    color: var(--gray-900);
+    background-color: #fff;
+    border: 2px solid var(--gray-200);
+    border-radius: 0.5rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.salons-map-select:hover {
+    border-color: var(--primary-400);
+}
+
+.salons-map-select:focus {
+    outline: none;
+    border-color: var(--primary-600);
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+}
+
 .salons-layout {
     display: grid;
     grid-template-columns: 1fr;
@@ -2048,9 +2189,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
 }
 
 .salon-card {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: #fff;
     border-radius: 0.75rem;
     padding: 1rem 1.25rem;
@@ -2063,24 +2208,39 @@ body {
     font-weight: 600;
     margin-bottom: 0.25rem;
     color: var(--gray-900);
-    line-height: 1.3;
+    line-height: 1.35;
 }
 
-.salon-address {
+.salon-address,
+.salon-hours {
     font-size: 0.9375rem;
+    font-weight: 400;
     color: var(--gray-700);
     line-height: 1.4;
 }
 
+.salon-address {
+    margin-bottom: 0.15rem;
+}
+
+.salon-hours {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
 .salon-meta {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--gray-500);
+    margin-top: 0.25rem;
 }
 
 .salon-route-link {
     display: inline-block;
     margin-top: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
     color: var(--primary-600);
     text-decoration: none;
     transition: color 0.2s;
@@ -2117,16 +2277,12 @@ body {
     .salon-card {
         padding: 1.25rem 1.5rem;
     }
-    .salon-address {
-        font-size: 0.95rem;
+    .salon-address,
+    .salon-hours {
+        font-size: 0.9375rem;
     }
 }
 
-.salon-meta {
-    font-size: 0.85rem;
-    color: var(--gray-500);
-    margin-top: 0.35rem;
-}
 
 @media (min-width: 768px) {
     .salons-layout {

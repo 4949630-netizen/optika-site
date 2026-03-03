@@ -38,8 +38,8 @@ mobileMenuLinks?.forEach(link => {
     });
 });
 
-// Отправка заявок на info@optikadobryhcen.ru (переадресация на Info@ofta-group.ru в ispmanager).
-var FORM_HANDLER = 'php'; // send-form.php на хостинге
+// Заявки на info@optikadobryhcen.ru (переадресация на Info@ofta-group.ru в ispmanager).
+var FORM_HANDLER = 'php';
 var FORMSPREE_FORM_ID = '';
 
 // Form submission
@@ -78,7 +78,7 @@ if (appointmentForm) {
                     return;
                 }
                 if (data.ok || data.success) {
-                    if (typeof ym === 'function') ym(107063229, 'reachGoal', 'forma_zapis');
+                    metrikaGoal('forma_zapis');
                     alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
                     appointmentForm.reset();
                 } else {
@@ -87,7 +87,7 @@ if (appointmentForm) {
             });
         })
         .catch(function (e) {
-            alert('Не удалось отправить заявку (сеть или сервер). Проверьте, что send-form.php есть на сайте. Позвоните нам: +7 (831) 123-45-67');
+            alert('Не удалось отправить заявку. Позвоните нам: +7 (831) 123-45-67');
         })
         .finally(function () {
             if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = btnText; }
@@ -234,9 +234,11 @@ var SALONS_NNOV = [
     { name: 'Салон на улице Коминтерна', address: 'Нижний Новгород, улица Коминтерна, 117', lat: 56.35034, lon: 43.86850 },
     { name: 'Салон на проспекте Ленина, 76', address: 'Нижний Новгород, проспект Ленина, 76', lat: 56.26563, lon: 43.91316 }
 ];
+var salonsMapInstance = null;
+
 function initYandexSalonsMap(containerId, salons, center, zoom) {
     var container = document.getElementById(containerId);
-    if (!container || typeof ymaps === 'undefined' || !salons.length) return;
+    if (!container || typeof ymaps === 'undefined' || !salons.length) return null;
     var map = new ymaps.Map(containerId, {
         center: center,
         zoom: zoom,
@@ -253,12 +255,47 @@ function initYandexSalonsMap(containerId, salons, center, zoom) {
     map.setCenter(center, zoom, { duration: 0 });
     var parent = container.closest('.salons-map');
     if (parent) parent.classList.add('salons-map-api-ready');
+    return map;
 }
 
 function initYandexMaps() {
     if (typeof ymaps === 'undefined') return;
     ymaps.ready(function () {
-        initYandexSalonsMap('salons-map-nnov', SALONS_NNOV, [56.327, 44.006], 11);
+        salonsMapInstance = initYandexSalonsMap('salons-map-nnov', SALONS_NNOV, [56.327, 44.006], 11);
+    });
+}
+
+// Выбор салона по адресу: «Все салоны» — карта целиком, иначе — центр на выбранном салоне
+var SALONS_MAP_DEFAULT_LL = [56.327, 44.006];
+var SALONS_MAP_DEFAULT_ZOOM = 11;
+var salonsIframeDefaultSrc = 'https://yandex.ru/map-widget/v1/?ll=44.006%2C56.327&z=12';
+
+var salonSelectEl = document.getElementById('salon-select-map');
+var salonCards = document.querySelectorAll('.salon-card');
+var salonsIframe = document.getElementById('salons-iframe-nnov');
+if (salonSelectEl && SALONS_NNOV) {
+    salonSelectEl.addEventListener('change', function () {
+        var val = this.value;
+        if (val === 'all' || val === '') {
+            if (salonsMapInstance) {
+                salonsMapInstance.setCenter(SALONS_MAP_DEFAULT_LL, SALONS_MAP_DEFAULT_ZOOM, { duration: 300 });
+            } else if (salonsIframe) {
+                salonsIframe.src = salonsIframeDefaultSrc;
+            }
+        } else {
+            var idx = parseInt(val, 10);
+            if (idx >= 0 && idx < SALONS_NNOV.length) {
+                var s = SALONS_NNOV[idx];
+                if (salonsMapInstance) {
+                    salonsMapInstance.setCenter([s.lat, s.lon], 16, { duration: 300 });
+                } else if (salonsIframe) {
+                    salonsIframe.src = 'https://yandex.ru/map-widget/v1/?ll=' + s.lon + '%2C' + s.lat + '&z=16&pt=' + s.lon + '%2C' + s.lat + ',pm2rdm';
+                }
+                if (salonCards[idx]) {
+                    salonCards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+        }
     });
 }
 
