@@ -292,7 +292,19 @@ if (salonSelectEl && SALONS_NNOV) {
                     salonsIframe.src = 'https://yandex.ru/map-widget/v1/?ll=' + s.lon + '%2C' + s.lat + '&z=16&pt=' + s.lon + '%2C' + s.lat + ',pm2rdm';
                 }
                 if (salonCards[idx]) {
-                    salonCards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    var card = salonCards[idx];
+                    var salonsSection = document.getElementById('salons');
+                    if (salonsSection) {
+                        salonsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    var listEl = document.querySelector('.salons-list');
+                    if (listEl && listEl.scrollHeight > listEl.clientHeight) {
+                        var cardTop = card.offsetTop;
+                        var listH = listEl.clientHeight;
+                        var cardH = card.offsetHeight;
+                        var targetScroll = Math.max(0, cardTop - listH / 2 + cardH / 2);
+                        listEl.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                    }
                 }
             }
         }
