@@ -299,11 +299,21 @@ if (salonSelectEl && SALONS_NNOV) {
                     }
                     var listEl = document.querySelector('.salons-list');
                     if (listEl && listEl.scrollHeight > listEl.clientHeight) {
-                        var cardTop = card.offsetTop;
-                        var listH = listEl.clientHeight;
-                        var cardH = card.offsetHeight;
-                        var targetScroll = Math.max(0, cardTop - listH / 2 + cardH / 2);
-                        listEl.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                        var delay = window.innerWidth >= 1024 ? 550 : 350;
+                        var scrollList = function () {
+                            requestAnimationFrame(function () {
+                                requestAnimationFrame(function () {
+                                    var listRect = listEl.getBoundingClientRect();
+                                    var cardRect = card.getBoundingClientRect();
+                                    var cardTopInList = cardRect.top - listRect.top + listEl.scrollTop;
+                                    var listH = listEl.clientHeight;
+                                    var cardH = card.offsetHeight;
+                                    var targetScroll = Math.max(0, cardTopInList - listH / 2 + cardH / 2);
+                                    listEl.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                                });
+                            });
+                        };
+                        setTimeout(scrollList, delay);
                     }
                 }
             }
