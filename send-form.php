@@ -4,6 +4,10 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET');
 header('Access-Control-Allow-Headers: Content-Type');
 
+if (is_file(__DIR__ . '/okocrm_config.php')) {
+    require_once __DIR__ . '/okocrm_config.php';
+}
+
 $to = 'info@optikadobryhcen.ru';
 $fromEmail = 'info@optikadobryhcen.ru';
 $fromName = 'Оптика добрых цен';
@@ -54,6 +58,39 @@ $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
 $sent = @mail($to, $subject, $body, $headers);
+
+$logFile = __DIR__ . '/okocrm_debug.log';
+if (!defined('OKOCRM_API_TOKEN') || OKOCRM_API_TOKEN === '' || !defined('OKOCRM_PIPELINE_ID') || !defined('OKOCRM_STAGE_ID')) {
+    $msg = date('Y-m-d H:i:s') . " | Oko CRM: конфиг не загружен или не заданы токен/pipeline/stage. Проверьте, что okocrm_config.php лежит в корне сайта и в нём заданы OKOCRM_API_TOKEN, OKOCRM_PIPELINE_ID, OKOCRM_STAGE_ID.\n";
+    @file_put_contents($logFile, $msg, FILE_APPEND | LOCK_EX);
+} else {
+    $noteText = 'Салон: ' . ($salon !== '' ? $salon : '— не указан') . "\nКомментарий: " . ($message !== '' ? $message : '—');
+    $postFields = [
+        'name' => 'Заявка с сайта: ' . $name,
+        'pipeline_id' => (string) OKOCRM_PIPELINE_ID,
+        'stages_id' => (string) OKOCRM_STAGE_ID,
+        'contact[name]' => $name,
+        'contact[phone]' => $phone,
+        'note[text]' => $noteText,
+    ];
+    $ch = curl_init('https://api.okocrm.com/v2/leads/');
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $postFields,
+        CURLOPT_HTTPHEADER => [
+            'Accept: application/json',
+            'Authorization: Bearer ' . trim(OKOCRM_API_TOKEN),
+        ],
+        CURLOPT_TIMEOUT => 15,
+    ]);
+    $responseBody = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlErr = curl_error($ch);
+    curl_close($ch);
+    $logLine = date('Y-m-d H:i:s') . " | Oko CRM запрос выполнен | HTTP $httpCode" . ($curlErr ? " | cURL ошибка: $curlErr" : '') . " | Ответ: " . trim(preg_replace('/\s+/', ' ', $responseBody)) . "\n";
+    @file_put_contents($logFile, $logLine, FILE_APPEND | LOCK_EX);
+}
 
 if ($sent) {
     echo json_encode(['ok' => true]);

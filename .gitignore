@@ -1,2 +1,4 @@
 .DS_Store
 node_modules
+okocrm_config.php
+okocrm_debug.log
