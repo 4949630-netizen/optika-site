@@ -42,18 +42,19 @@ echo '<h2>Получение stages_id для воронки ' . (int) $pipeline
 
 // 1) Пробуем получить список воронок и этапов (если API отдаёт)
 $pipelinesUrl = 'https://api.okocrm.com/v2/pipelines/';
-$res = okocrmGet($pipelinesUrl, $headers);
+$pipelinesRes = okocrmGet($pipelinesUrl, $headers);
 $pipelines = null;
-if ($res['code'] === 200 && $res['body'] !== '') {
-    $data = @json_decode($res['body'], true);
+if ($pipelinesRes['code'] === 200 && $pipelinesRes['body'] !== '') {
+    $data = @json_decode($pipelinesRes['body'], true);
     if (is_array($data)) {
         $pipelines = $data;
     }
 }
 
 if (is_array($pipelines)) {
-    echo '<h3>Список воронок и этапов (GET /v2/pipelines/)</h3><pre>' . htmlspecialchars(json_encode($pipelines, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) . '</pre>';
-    // Попробуем найти нашу воронку и этапы в типичных структурах
+    echo '<h3>Список воронок (GET /v2/pipelines/)</h3><pre>' . htmlspecialchars(json_encode($pipelines, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) . '</pre>';
+    // Ищем этапы в разных вариантах структуры
+    $stagesShown = false;
     if (isset($pipelines['pipelines']) && is_array($pipelines['pipelines'])) {
         foreach ($pipelines['pipelines'] as $p) {
             $id = isset($p['id']) ? (int) $p['id'] : 0;
@@ -65,11 +66,46 @@ if (is_array($pipelines)) {
                     echo '<li>stages_id = <code>' . htmlspecialchars((string) $sid) . '</code>' . ($name ? ' — ' . htmlspecialchars($name) : '') . '</li>';
                 }
                 echo '</ul>';
+                $stagesShown = true;
             }
         }
     }
+    if (!$stagesShown && isset($pipelines['data']) && is_array($pipelines['data'])) {
+        foreach ($pipelines['data'] as $p) {
+            if ((isset($p['id']) ? (int) $p['id'] : 0) === $pipelineId && isset($p['stages']) && is_array($p['stages'])) {
+                echo '<p><strong>Этапы воронки ' . $pipelineId . ':</strong></p><ul>';
+                foreach ($p['stages'] as $s) {
+                    $sid = isset($s['id']) ? $s['id'] : '?';
+                    $name = isset($s['name']) ? $s['name'] : '';
+                    echo '<li>stages_id = <code>' . htmlspecialchars((string) $sid) . '</code>' . ($name ? ' — ' . htmlspecialchars($name) : '') . '</li>';
+                }
+                echo '</ul>';
+                $stagesShown = true;
+            }
+        }
+    }
+    // Пробуем запросить одну воронку: возможно, этапы приходят только там
+    if (!$stagesShown && $pipelineId > 0) {
+        $oneRes = okocrmGet('https://api.okocrm.com/v2/pipelines/' . $pipelineId . '/', $headers);
+        if ($oneRes['code'] === 200 && $oneRes['body'] !== '') {
+            $one = @json_decode($oneRes['body'], true);
+            if (is_array($one) && isset($one['stages']) && is_array($one['stages'])) {
+                echo '<p><strong>Этапы воронки ' . $pipelineId . ' (GET /v2/pipelines/' . $pipelineId . '/):</strong></p><ul>';
+                foreach ($one['stages'] as $s) {
+                    $sid = isset($s['id']) ? $s['id'] : '?';
+                    $name = isset($s['name']) ? $s['name'] : '';
+                    echo '<li>stages_id = <code>' . htmlspecialchars((string) $sid) . '</code>' . ($name ? ' — ' . htmlspecialchars($name) : '') . '</li>';
+                }
+                echo '</ul>';
+                $stagesShown = true;
+            }
+        }
+    }
+    if (!$stagesShown) {
+        echo '<p><strong>В ответе API нет списка этапов.</strong> См. инструкцию ниже.</p>';
+    }
 } else {
-    echo '<p>Метод GET /v2/pipelines/ недоступен или вернул ошибку (код ' . (int) $res['code'] . '). Пробуем через список сделок.</p>';
+    echo '<p>Метод GET /v2/pipelines/ недоступен или вернул ошибку (код ' . (int) $pipelinesRes['code'] . '). Пробуем через список сделок.</p>';
 }
 
 // 2) Получаем сделки и ищем stages_id по pipeline_id
@@ -99,10 +135,26 @@ if (!empty($foundStages)) {
         echo '<li><strong>stages_id = <code>' . htmlspecialchars($sid) . '</code></strong> — подставьте это значение в <code>okocrm_config.php</code> как <code>OKOCRM_STAGE_ID</code>.</li>';
     }
     echo '</ul>';
-} elseif (!is_array($pipelines)) {
-    echo '<p>В списке сделок нет записей из воронки ' . $pipelineId . '. Варианты:</p>';
-    echo '<ul><li>Создайте одну сделку вручную в Oko CRM в воронке «Запись на проверку зрения» и снова откройте эту страницу — скрипт подставит нужный stages_id.</li>';
-    echo '<li>Напишите в поддержку Oko CRM (Telegram @OkoCRM_supportBot или support@okocrm.com): «Какой stages_id у первого этапа воронки с id 24991?»</li></ul>';
+} else {
+    echo '<h3>Как узнать stages_id</h3>';
+    echo '<ol>';
+    echo '<li><strong>Создайте одну сделку вручную</strong> в Oko CRM: Сделки → воронка «Запись на проверку зрения» → любая колонка (например «Первый этап») → новая сделка. Сохраните.</li>';
+    echo '<li>Откройте снова эту страницу с <a href="?debug=1">?debug=1</a>: <code>get_okocrm_stages.php?debug=1</code></li>';
+    echo '<li>В блоке «GET /v2/leads/» найдите в JSON сделку с <code>"pipeline_id": 24991</code> — рядом будет <code>stages_id</code>. Это число подставьте в <code>okocrm_config.php</code> как <code>OKOCRM_STAGE_ID</code>.</li>';
+    echo '<li>Либо напишите в поддержку Oko CRM (Telegram @OkoCRM_supportBot или support@okocrm.com): «Какой stages_id у первого этапа воронки с id 24991?»</li>';
+    echo '</ol>';
 }
 
-echo '<p><small>После настройки удалите <code>get_okocrm_stages.php</code> с сервера.</small></p>';
+// Режим отладки: показать сырые ответы API (откройте с ?debug=1)
+$debug = isset($_GET['debug']) && $_GET['debug'] === '1';
+if ($debug) {
+    echo '<hr><h3>Отладка: сырые ответы API</h3>';
+    echo '<p><strong>GET /v2/pipelines/</strong> — код ответа: ' . (int) $pipelinesRes['code'] . '</p>';
+    echo '<pre>' . htmlspecialchars($pipelinesRes['body'] ?: '(пусто)') . '</pre>';
+    $leadsRes = okocrmGet('https://api.okocrm.com/v2/leads/?page=1', $headers);
+    echo '<p><strong>GET /v2/leads/?page=1</strong> — код ответа: ' . (int) $leadsRes['code'] . '</p>';
+    echo '<pre>' . htmlspecialchars($leadsRes['body'] ?: '(пусто)') . '</pre>';
+    echo '<p>Найдите в JSON выше поле <code>pipeline_id</code> со значением ' . $pipelineId . ' — рядом будет <code>stages_id</code>. Это число и подставьте в okocrm_config.php.</p>';
+}
+
+echo '<p><small>Если ничего не нашли — откройте с <a href="?debug=1">?debug=1</a> и посмотрите сырой ответ API. После настройки удалите <code>get_okocrm_stages.php</code> с сервера.</small></p>';
