@@ -1132,14 +1132,16 @@ body {
     font-size: 0.8125rem;
     color: var(--primary-600);
     font-weight: 600;
+    line-height: 1.3;
 }
 
 .product-name {
     font-size: 1.125rem;
     font-weight: 600;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 0.25rem 0;
     color: var(--gray-900);
     line-height: 1.3;
+    min-height: 2.6em;
 }
 
 .product-benefit {
@@ -1147,15 +1149,29 @@ body {
     font-weight: 600;
     color: var(--gray-800);
     line-height: 1.4;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
+    flex: 1;
+    min-height: 2.85em;
+}
+
+.product-price-block {
+    margin-top: auto;
+    padding-top: 0.5rem;
 }
 
 .product-price {
     font-size: 1.55rem;
     font-weight: bold;
     color: var(--primary-600);
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.15rem 0;
     line-height: 1.2;
+}
+
+.product-price-note {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--gray-600);
+    font-weight: 500;
 }
 
 .product-description {
@@ -2215,69 +2231,96 @@ body {
     padding-right: 0.25rem;
 }
 
+.salon-group-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    margin: 1.25rem 0 0.5rem 0;
+    padding: 0;
+    line-height: 1.3;
+}
+.salon-group-title:first-child {
+    margin-top: 0;
+}
+
 .salon-card {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: #fff;
     border-radius: 0.75rem;
-    padding: 1rem 1.25rem;
+    padding: 1.25rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     border-left: 4px solid var(--primary-500);
 }
 
-.salon-name {
+.salon-address {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
     color: var(--gray-900);
     line-height: 1.35;
+    margin-bottom: 0.35rem;
 }
 
-.salon-address,
 .salon-hours {
     font-size: 0.9375rem;
     font-weight: 400;
     color: var(--gray-700);
     line-height: 1.4;
-}
-
-.salon-address {
-    margin-bottom: 0.15rem;
-}
-
-.salon-hours {
-    margin-top: 0;
-    margin-bottom: 0.25rem;
+    margin: 0 0 0.25rem 0;
 }
 
 .salon-meta {
     font-size: 0.875rem;
     font-weight: 400;
     color: var(--gray-500);
-    margin-top: 0.25rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+    padding: 0.75rem;
+    background: var(--gray-50);
+    border-radius: 0.5rem;
 }
 
-.salon-route-link {
-    display: inline-block;
-    margin-top: 0.5rem;
+.salon-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.salon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.5rem 1rem;
     font-family: inherit;
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--primary-600);
     text-decoration: none;
-    transition: color 0.2s;
+    border-radius: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.salon-route-link {
+    color: var(--primary-600);
+    background: transparent;
+    border: 2px solid var(--primary-500);
 }
 
 .salon-route-link:hover {
     color: var(--accent-orange);
+    border-color: var(--accent-orange);
 }
 
-@media (max-width: 767px) {
-    .salon-route-link {
-        padding: 0.35rem 0;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-    }
+.salon-call-link {
+    color: #fff;
+    background: var(--primary-600);
+    border: 2px solid var(--primary-600);
+}
+
+.salon-call-link:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -2296,11 +2339,16 @@ body {
         gap: 1rem;
     }
     .salon-card {
-        padding: 1.25rem 1.5rem;
+        padding: 1.5rem;
     }
     .salon-address,
     .salon-hours {
         font-size: 0.9375rem;
+    }
+    .salon-meta {
+        padding: 0.875rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
     }
 }
 
@@ -2566,6 +2614,32 @@ body {
     font-size: 0.9375rem;
     color: var(--gray-600);
     line-height: 1.55;
+}
+
+.faq-answer p {
+    margin: 0 0 0.75rem 0;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer ul {
+    margin: 0.5rem 0 0.75rem 1.25rem;
+    padding: 0;
+    list-style: disc;
+}
+
+.faq-answer li {
+    margin-bottom: 0.25rem;
+}
+
+.faq-cta {
+    margin: 1.25rem 0 0 0 !important;
+}
+
+.faq-cta .btn {
+    display: inline-block;
 }
 
 .faq-answer::before {
