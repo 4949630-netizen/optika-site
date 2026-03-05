@@ -92,6 +92,31 @@ if (!defined('OKOCRM_API_TOKEN') || OKOCRM_API_TOKEN === '' || !defined('OKOCRM_
     @file_put_contents($logFile, $logLine, FILE_APPEND | LOCK_EX);
 }
 
+// Уведомление в Telegram о новой заявке (если заданы TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID в okocrm_config.php)
+if (defined('TELEGRAM_BOT_TOKEN') && TELEGRAM_BOT_TOKEN !== '' && defined('TELEGRAM_CHAT_ID') && TELEGRAM_CHAT_ID !== '') {
+    $telegramText = "🆕 Новая заявка с сайта\n\n";
+    $telegramText .= "👤 Имя: " . $name . "\n";
+    $telegramText .= "📞 Телефон: " . $phone . "\n";
+    $telegramText .= "📍 Салон: " . ($salon !== '' ? $salon : '— не указан') . "\n";
+    if ($message !== '') {
+        $telegramText .= "💬 Комментарий: " . $message . "\n";
+    }
+    $telegramText .= "\n" . date('d.m.Y H:i');
+    $telegramPayload = [
+        'chat_id' => TELEGRAM_CHAT_ID,
+        'text' => $telegramText,
+    ];
+    $tg = curl_init('https://api.telegram.org/bot' . trim(TELEGRAM_BOT_TOKEN) . '/sendMessage');
+    curl_setopt_array($tg, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $telegramPayload,
+        CURLOPT_TIMEOUT => 10,
+    ]);
+    curl_exec($tg);
+    curl_close($tg);
+}
+
 if ($sent) {
     echo json_encode(['ok' => true]);
 } else {
