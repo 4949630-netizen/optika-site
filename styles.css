@@ -2286,6 +2286,8 @@ body {
     align-items: center;
 }
 
+/* Кнопки в карточках салонов — всегда вид кнопки, не ссылки */
+.salon-actions a.salon-btn,
 .salon-btn {
     display: inline-flex;
     align-items: center;
@@ -2295,9 +2297,18 @@ body {
     font-family: inherit;
     font-size: 0.9375rem;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: none !important;
     border-radius: 0.5rem;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.salon-actions a.salon-btn:hover,
+.salon-actions a.salon-btn:focus,
+.salon-btn:hover,
+.salon-btn:focus {
+    text-decoration: none !important;
 }
 
 .salon-route-link {

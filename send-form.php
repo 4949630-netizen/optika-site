@@ -113,8 +113,13 @@ if (defined('TELEGRAM_BOT_TOKEN') && TELEGRAM_BOT_TOKEN !== '' && defined('TELEG
         CURLOPT_POSTFIELDS => $telegramPayload,
         CURLOPT_TIMEOUT => 10,
     ]);
-    curl_exec($tg);
+    $tgResponse = curl_exec($tg);
+    $tgHttpCode = curl_getinfo($tg, CURLINFO_HTTP_CODE);
     curl_close($tg);
+    $logLine = date('Y-m-d H:i:s') . " | Telegram отправка | HTTP $tgHttpCode | " . trim(preg_replace('/\s+/', ' ', (string) $tgResponse)) . "\n";
+    @file_put_contents($logFile, $logLine, FILE_APPEND | LOCK_EX);
+} else {
+    @file_put_contents($logFile, date('Y-m-d H:i:s') . " | Telegram: не отправлено (нет TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID в okocrm_config.php)\n", FILE_APPEND | LOCK_EX);
 }
 
 if ($sent) {
