@@ -2353,9 +2353,10 @@ body {
 }
 
 
+/* Карта и список салонов — одна колонка на всех экранах (одинаково на компе и телефоне) */
 @media (min-width: 768px) {
     .salons-layout {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        grid-template-columns: 1fr;
         align-items: stretch;
     }
 }
@@ -2650,17 +2651,18 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Вопросы — одинаковые отступы и размер шрифта на компе и телефоне */
 @media (min-width: 768px) {
     .faq {
-        padding: 3.5rem 0;
+        padding: 2.5rem 0;
     }
     .faq-question {
-        padding: 1.25rem 1.5rem;
-        font-size: 1.0625rem;
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
     }
     .faq-answer {
-        padding: 0 1.5rem 1.5rem;
-        font-size: 1rem;
+        padding: 0 1.25rem 1.25rem;
+        font-size: 0.9375rem;
     }
 }
 
