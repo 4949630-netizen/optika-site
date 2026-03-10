@@ -239,11 +239,15 @@ var salonsMapInstance = null;
 function initYandexSalonsMap(containerId, salons, center, zoom) {
     var container = document.getElementById(containerId);
     if (!container || typeof ymaps === 'undefined' || !salons.length) return null;
+    var isMobile = window.innerWidth < 768;
     var map = new ymaps.Map(containerId, {
         center: center,
         zoom: zoom,
         controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
     });
+    if (isMobile) {
+        map.options.set('minZoom', 10);
+    }
     salons.forEach(function (s) {
         var placemark = new ymaps.Placemark([s.lat, s.lon], {
             balloonContentHeader: s.name,
@@ -252,7 +256,16 @@ function initYandexSalonsMap(containerId, salons, center, zoom) {
         }, { preset: 'islands#orangeDotIconWithCaption', iconCaptionMaxWidth: 120 });
         map.geoObjects.add(placemark);
     });
-    map.setCenter(center, zoom, { duration: 0 });
+    if (isMobile) {
+        var bounds = map.geoObjects.getBounds();
+        if (bounds) {
+            map.setBounds(bounds, { checkZoomRange: true, zoomMargin: 80 });
+        } else {
+            map.setCenter(center, zoom, { duration: 0 });
+        }
+    } else {
+        map.setCenter(center, zoom, { duration: 0 });
+    }
     var parent = container.closest('.salons-map');
     if (parent) parent.classList.add('salons-map-api-ready');
     return map;
@@ -269,6 +282,7 @@ function initYandexMaps() {
 var SALONS_MAP_DEFAULT_LL = [56.327, 44.006];
 var SALONS_MAP_DEFAULT_ZOOM = 11;
 var salonsIframeDefaultSrc = 'https://yandex.ru/map-widget/v1/?ll=44.006%2C56.327&z=12';
+var salonsIframeMobileSrc = 'https://yandex.ru/map-widget/v1/?ll=43.945%2C56.295&z=10';
 
 var salonSelectEl = document.getElementById('salon-select-map');
 var salonCards = document.querySelectorAll('.salon-card');
@@ -278,9 +292,18 @@ if (salonSelectEl && SALONS_NNOV) {
         var val = this.value;
         if (val === 'all' || val === '') {
             if (salonsMapInstance) {
-                salonsMapInstance.setCenter(SALONS_MAP_DEFAULT_LL, SALONS_MAP_DEFAULT_ZOOM, { duration: 300 });
+                if (window.innerWidth < 768) {
+                    var bounds = salonsMapInstance.geoObjects.getBounds();
+                    if (bounds) {
+                        salonsMapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 80, duration: 300 });
+                    } else {
+                        salonsMapInstance.setCenter(SALONS_MAP_DEFAULT_LL, SALONS_MAP_DEFAULT_ZOOM, { duration: 300 });
+                    }
+                } else {
+                    salonsMapInstance.setCenter(SALONS_MAP_DEFAULT_LL, SALONS_MAP_DEFAULT_ZOOM, { duration: 300 });
+                }
             } else if (salonsIframe) {
-                salonsIframe.src = salonsIframeDefaultSrc;
+                salonsIframe.src = window.innerWidth < 768 ? salonsIframeMobileSrc : salonsIframeDefaultSrc;
             }
         } else {
             var idx = parseInt(val, 10);
@@ -328,4 +351,6 @@ if (yandexKey) {
     s.async = true;
     s.onload = initYandexMaps;
     document.head.appendChild(s);
+} else if (document.getElementById('salons-iframe-nnov') && window.innerWidth < 768) {
+    document.getElementById('salons-iframe-nnov').src = salonsIframeMobileSrc;
 }
