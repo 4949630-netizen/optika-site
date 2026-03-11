@@ -1297,17 +1297,20 @@ body {
 /* Manifesto: «Почему нас называют Добрая оптика?» */
 .manifesto {
     padding: 2.5rem 0;
-    background: var(--bg-light, #fafafa);
+    background: var(--bg-warm, #fdfaf7);
+}
+.manifesto .section-header {
+    margin-bottom: 1.5rem;
 }
 .manifesto-body {
-    max-width: 42rem;
+    max-width: 40rem;
     margin: 0 auto;
 }
 .manifesto-body p {
     font-size: 1rem;
     color: var(--gray-700);
-    line-height: 1.6;
-    margin: 0 0 1rem;
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
 }
 .manifesto-body p:last-child {
     margin-bottom: 0;
@@ -1316,8 +1319,12 @@ body {
     .manifesto {
         padding: 3.5rem 0;
     }
+    .manifesto .section-header {
+        margin-bottom: 2rem;
+    }
     .manifesto-body p {
         font-size: 1.0625rem;
+        line-height: 1.75;
     }
 }
 
@@ -1903,6 +1910,17 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.footer-column {
+    min-width: 0;
+    overflow: visible;
+}
+
+.footer-heading,
+.footer-links a {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
 .footer-title {
     font-size: 1.25rem;
     font-weight: bold;
@@ -1913,6 +1931,7 @@ body {
     font-size: 0.9375rem;
     color: var(--gray-400);
     line-height: 1.55;
+    overflow-wrap: break-word;
 }
 
 .footer-brand-note {
@@ -2820,13 +2839,13 @@ body {
 
 @media (min-width: 640px) {
     .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
     .footer-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: minmax(0, 1.2fr) minmax(160px, 1fr) minmax(140px, 1fr) minmax(140px, 1fr);
     }
 }
 
