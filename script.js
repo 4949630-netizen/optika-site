@@ -9,6 +9,14 @@ document.querySelectorAll('a[href="#appointment"]').forEach(function (el) {
     el.addEventListener('click', function () { metrikaGoal('zapis'); });
 });
 
+// Переходы в соцсети и 2ГИС — цели для отчётов в Метрике
+document.querySelectorAll('a[data-metrika-goal]').forEach(function (link) {
+    link.addEventListener('click', function () {
+        var goal = link.getAttribute('data-metrika-goal');
+        if (goal) metrikaGoal(goal);
+    });
+});
+
 // Ссылки «Построить маршрут» — маршрут от текущего местоположения до салона
 // В rtext Яндекс.Карты порядок: широта, долгота (lat,lon). Иначе точка уезжает (например в район Устюрта)
 document.querySelectorAll('.salon-route-link').forEach(function (link) {
