@@ -1154,6 +1154,17 @@ body {
     object-position: center top;
 }
 
+/* Уход и долговечность: кадр смещён вниз, чтобы текст на фото был виден */
+.product-image--coating img {
+    object-fit: cover;
+    object-position: center 55%;
+}
+
+/* Детское зрение: кадр по верху, чтобы были видны голова и кепка */
+.product-image--kids img {
+    object-position: center top;
+}
+
 @media (min-width: 640px) {
     .product-image {
         height: 16rem;
