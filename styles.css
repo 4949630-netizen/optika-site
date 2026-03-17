@@ -1644,6 +1644,9 @@ body {
     flex-shrink: 0;
     font-size: 1rem;
     color: var(--primary-600);
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
 }
 
 .appointment-form-row-wrap {
@@ -1728,6 +1731,10 @@ body {
 
 .appointment-after-icon {
     font-size: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
 .appointment-after-sub {
