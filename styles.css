@@ -1157,7 +1157,7 @@ body {
 /* Уход и долговечность: кадр смещён вниз, чтобы текст на фото был виден */
 .product-image--coating img {
     object-fit: cover;
-    object-position: center 72%;
+    object-position: center 82%;
 }
 
 /* Детское зрение: кадр по верху, чтобы были видны голова и кепка */
