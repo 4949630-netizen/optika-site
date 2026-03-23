@@ -1154,6 +1154,14 @@ body {
     object-position: center top;
 }
 
+/* На мобильной показываем фото целиком без обрезки */
+@media (max-width: 767px) {
+    .product-image--driver img {
+        object-fit: contain;
+        object-position: center center;
+    }
+}
+
 /* Уход и долговечность: кадр смещён вниз, чтобы текст на фото был виден */
 .product-image--coating img {
     object-fit: cover;
