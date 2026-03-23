@@ -265,13 +265,14 @@ function initYandexSalonsMap(containerId, salons, center, zoom) {
         }, { preset: 'islands#orangeDotIconWithCaption', iconCaptionMaxWidth: 120 });
         map.geoObjects.add(placemark);
     });
-    if (isMobile) {
-        var bounds = map.geoObjects.getBounds();
-        if (bounds) {
-            map.setBounds(bounds, { checkZoomRange: true, zoomMargin: 80 });
-        } else {
-            map.setCenter(center, zoom, { duration: 0 });
-        }
+
+    // Для вида как в примере: сразу показываем все салоны в одном кадре.
+    var bounds = map.geoObjects.getBounds();
+    if (bounds) {
+        map.setBounds(bounds, {
+            checkZoomRange: true,
+            zoomMargin: isMobile ? [50, 35, 50, 35] : [80, 100, 80, 80]
+        });
     } else {
         map.setCenter(center, zoom, { duration: 0 });
     }
@@ -288,10 +289,10 @@ function initYandexMaps() {
 }
 
 // Выбор салона по адресу: «Все салоны» — карта целиком, иначе — центр на выбранном салоне
-var SALONS_MAP_DEFAULT_LL = [56.327, 44.006];
-var SALONS_MAP_DEFAULT_ZOOM = 11;
-var salonsIframeDefaultSrc = 'https://yandex.ru/map-widget/v1/?ll=44.006%2C56.327&z=12';
-var salonsIframeMobileSrc = 'https://yandex.ru/map-widget/v1/?ll=43.945%2C56.295&z=10';
+var SALONS_MAP_DEFAULT_LL = [56.300, 43.950];
+var SALONS_MAP_DEFAULT_ZOOM = 10;
+var salonsIframeDefaultSrc = 'https://yandex.ru/map-widget/v1/?ll=43.950%2C56.300&z=10';
+var salonsIframeMobileSrc = 'https://yandex.ru/map-widget/v1/?ll=43.950%2C56.300&z=10';
 
 var salonSelectEl = document.getElementById('salon-select-map');
 var salonCards = document.querySelectorAll('.salon-card');
