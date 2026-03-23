@@ -1,3 +1,10 @@
+# Принудительный редирект на HTTPS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 # Разрешить выполнение PHP в этой папке (для send-form.php)
 <IfModule mod_php.c>
     AddType application/x-httpd-php .php
