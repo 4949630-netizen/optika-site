@@ -1157,8 +1157,8 @@ body {
 /* На мобильной показываем фото целиком без обрезки */
 @media (max-width: 767px) {
     .product-image--driver img {
-        object-fit: contain;
-        object-position: center center;
+        object-fit: cover;
+        object-position: center 38%;
     }
 }
 
