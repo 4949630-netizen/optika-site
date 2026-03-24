@@ -40,11 +40,40 @@ $phone   = isset($_POST['phone'])  ? trim((string) $_POST['phone'])  : '';
 $salon   = isset($_POST['salon'])  ? trim((string) $_POST['salon'])  : '';
 $message = isset($_POST['message']) ? trim((string) $_POST['message']) : '';
 
+/**
+ * Приводит ввод к 11 цифрам, начинающимся с 7, или возвращает null.
+ */
+function normalize_ru_phone_digits(string $phone): ?string {
+    $d = preg_replace('/\D/u', '', $phone);
+    if (strlen($d) === 11 && $d[0] === '8') {
+        $d = '7' . substr($d, 1);
+    }
+    if (strlen($d) === 10) {
+        $d = '7' . $d;
+    }
+    if (strlen($d) === 11 && $d[0] === '7') {
+        return $d;
+    }
+    return null;
+}
+
+function format_ru_phone_display(string $d11): string {
+    return '+7 (' . substr($d11, 1, 3) . ') ' . substr($d11, 4, 3) . '-' . substr($d11, 7, 2) . '-' . substr($d11, 9, 2);
+}
+
 if ($name === '' || $phone === '') {
     http_response_code(400);
     echo json_encode(['ok' => false, 'error' => 'Укажите имя и телефон']);
     exit;
 }
+
+$phoneDigits = normalize_ru_phone_digits($phone);
+if ($phoneDigits === null) {
+    http_response_code(400);
+    echo json_encode(['ok' => false, 'error' => 'Укажите полный номер: 10 цифр или с 7/8 в начале.']);
+    exit;
+}
+$phone = format_ru_phone_display($phoneDigits);
 
 $subject = 'Новая заявка с сайта optikadobryhcen.ru';
 $body = "Имя: $name\n";
@@ -70,7 +99,7 @@ if (!defined('OKOCRM_API_TOKEN') || OKOCRM_API_TOKEN === '' || !defined('OKOCRM_
         'pipeline_id' => (string) OKOCRM_PIPELINE_ID,
         'stages_id' => (string) OKOCRM_STAGE_ID,
         'contact[name]' => $name,
-        'contact[phone]' => $phone,
+        'contact[phone]' => '+' . $phoneDigits,
         'note[text]' => $noteText,
     ];
     $ch = curl_init('https://api.okocrm.com/v2/leads/');

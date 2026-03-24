@@ -50,6 +50,25 @@ mobileMenuLinks?.forEach(link => {
 var FORM_HANDLER = 'php';
 var FORMSPREE_FORM_ID = '';
 
+/** Нормализация российского номера: только цифры, затем 11 цифр, начинается с 7 */
+function normalizeRussianPhoneDigits(raw) {
+    var d = String(raw || '').replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '8') {
+        d = '7' + d.slice(1);
+    }
+    if (d.length === 10) {
+        d = '7' + d;
+    }
+    if (d.length === 11 && d.charAt(0) === '7') {
+        return d;
+    }
+    return null;
+}
+
+function formatRussianPhoneDisplay(d11) {
+    return '+7 (' + d11.slice(1, 4) + ') ' + d11.slice(4, 7) + '-' + d11.slice(7, 9) + '-' + d11.slice(9, 11);
+}
+
 // Form submission
 const appointmentForm = document.getElementById('appointmentForm');
 if (appointmentForm) {
@@ -61,6 +80,21 @@ if (appointmentForm) {
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.innerHTML = 'Отправка…';
+        }
+
+        var phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            var digits = normalizeRussianPhoneDigits(phoneInput.value);
+            if (!digits) {
+                alert('Укажите полный номер: 10 цифр (как в мобильном) или 11 с 7 или 8 в начале, например +7 (999) 123-45-67.');
+                phoneInput.focus();
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = btnText;
+                }
+                return;
+            }
+            phoneInput.value = formatRussianPhoneDisplay(digits);
         }
 
         var formData = new FormData(appointmentForm);
