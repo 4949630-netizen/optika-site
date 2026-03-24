@@ -307,7 +307,7 @@ function initYandexSalonsMap(containerId, salons, center, zoom) {
         map.geoObjects.add(placemark);
     });
 
-    // Для вида как в примере: сразу показываем все салоны в одном кадре.
+    // Сразу показываем все салоны в одном кадре (и на мобильном, и на десктопе).
     var bounds = map.geoObjects.getBounds();
     if (bounds) {
         map.setBounds(bounds, {
@@ -332,8 +332,23 @@ function initYandexMaps() {
 // Выбор салона по адресу: «Все салоны» — карта целиком, иначе — центр на выбранном салоне
 var SALONS_MAP_DEFAULT_LL = [56.300, 43.950];
 var SALONS_MAP_DEFAULT_ZOOM = 10;
-var salonsIframeDefaultSrc = 'https://yandex.ru/map-widget/v1/?ll=43.950%2C56.300&z=10';
-var salonsIframeMobileSrc = 'https://yandex.ru/map-widget/v1/?ll=43.950%2C56.300&z=10';
+
+/** Резервный iframe: метки всех салонов (без этого виден только «пустой» фон при отключённом API). */
+function buildYandexMapWidgetAllSalonsUrl(zoom) {
+    var z = zoom != null ? zoom : SALONS_MAP_DEFAULT_ZOOM;
+    var pts = SALONS_NNOV.map(function (s) {
+        return s.lon + ',' + s.lat + ',pm2rdm';
+    }).join('~');
+    return 'https://yandex.ru/map-widget/v1/?ll=' + SALONS_MAP_DEFAULT_LL[1] + '%2C' + SALONS_MAP_DEFAULT_LL[0] + '&z=' + z + '&pt=' + pts;
+}
+
+var salonsIframeDefaultSrc = buildYandexMapWidgetAllSalonsUrl(SALONS_MAP_DEFAULT_ZOOM);
+var salonsIframeMobileSrc = buildYandexMapWidgetAllSalonsUrl(SALONS_MAP_DEFAULT_ZOOM);
+
+var salonsIframeEarly = document.getElementById('salons-iframe-nnov');
+if (salonsIframeEarly) {
+    salonsIframeEarly.src = salonsIframeDefaultSrc;
+}
 
 var salonSelectEl = document.getElementById('salon-select-map');
 var salonCards = document.querySelectorAll('.salon-card');
@@ -343,13 +358,10 @@ if (salonSelectEl && SALONS_NNOV) {
         var val = this.value;
         if (val === 'all' || val === '') {
             if (salonsMapInstance) {
-                if (window.innerWidth < 768) {
-                    var bounds = salonsMapInstance.geoObjects.getBounds();
-                    if (bounds) {
-                        salonsMapInstance.setBounds(bounds, { checkZoomRange: true, zoomMargin: 80, duration: 300 });
-                    } else {
-                        salonsMapInstance.setCenter(SALONS_MAP_DEFAULT_LL, SALONS_MAP_DEFAULT_ZOOM, { duration: 300 });
-                    }
+                var boundsAll = salonsMapInstance.geoObjects.getBounds();
+                var margin = window.innerWidth < 768 ? [50, 35, 50, 35] : [80, 100, 80, 80];
+                if (boundsAll) {
+                    salonsMapInstance.setBounds(boundsAll, { checkZoomRange: true, zoomMargin: margin, duration: 300 });
                 } else {
                     salonsMapInstance.setCenter(SALONS_MAP_DEFAULT_LL, SALONS_MAP_DEFAULT_ZOOM, { duration: 300 });
                 }
@@ -401,7 +413,12 @@ if (yandexKey) {
     s.src = 'https://api-maps.yandex.ru/2.1/?apikey=' + yandexKey + '&lang=ru_RU';
     s.async = true;
     s.onload = initYandexMaps;
+    s.onerror = function () {
+        var fb = document.getElementById('salons-iframe-nnov');
+        if (fb) fb.src = salonsIframeDefaultSrc;
+    };
     document.head.appendChild(s);
-} else if (document.getElementById('salons-iframe-nnov') && window.innerWidth < 768) {
-    document.getElementById('salons-iframe-nnov').src = salonsIframeMobileSrc;
+} else {
+    var fbNoKey = document.getElementById('salons-iframe-nnov');
+    if (fbNoKey) fbNoKey.src = salonsIframeDefaultSrc;
 }
