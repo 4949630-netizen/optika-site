@@ -50,19 +50,26 @@ mobileMenuLinks?.forEach(link => {
 var FORM_HANDLER = 'php';
 var FORMSPREE_FORM_ID = '';
 
-/** Нормализация российского номера: только цифры, затем 11 цифр, начинается с 7 */
-function normalizeRussianPhoneDigits(raw) {
+/**
+ * Российский номер: ровно 11 цифр, первая — 7 (+7) или 8.
+ * Возвращает { ok: true, digits } или { ok: false, message }.
+ */
+function validateRussianPhone(raw) {
     var d = String(raw || '').replace(/\D/g, '');
-    if (d.length === 11 && d.charAt(0) === '8') {
+    if (d.length < 11) {
+        return { ok: false, message: 'Недостаточно цифр. Введите полный номер: 11 цифр, начиная с +7 или 8.' };
+    }
+    if (d.length > 11) {
+        return { ok: false, message: 'Слишком много цифр. Нужно ровно 11 цифр в формате +7 или 8…' };
+    }
+    var first = d.charAt(0);
+    if (first !== '7' && first !== '8') {
+        return { ok: false, message: 'Номер должен начинаться с +7 или 8 (российский формат).' };
+    }
+    if (first === '8') {
         d = '7' + d.slice(1);
     }
-    if (d.length === 10) {
-        d = '7' + d;
-    }
-    if (d.length === 11 && d.charAt(0) === '7') {
-        return d;
-    }
-    return null;
+    return { ok: true, digits: d };
 }
 
 function formatRussianPhoneDisplay(d11) {
@@ -84,9 +91,9 @@ if (appointmentForm) {
 
         var phoneInput = document.getElementById('phone');
         if (phoneInput) {
-            var digits = normalizeRussianPhoneDigits(phoneInput.value);
-            if (!digits) {
-                alert('Укажите полный номер: 10 цифр (как в мобильном) или 11 с 7 или 8 в начале, например +7 (999) 123-45-67.');
+            var phoneCheck = validateRussianPhone(phoneInput.value);
+            if (!phoneCheck.ok) {
+                alert(phoneCheck.message);
                 phoneInput.focus();
                 if (submitBtn) {
                     submitBtn.disabled = false;
@@ -94,7 +101,7 @@ if (appointmentForm) {
                 }
                 return;
             }
-            phoneInput.value = formatRussianPhoneDisplay(digits);
+            phoneInput.value = formatRussianPhoneDisplay(phoneCheck.digits);
         }
 
         var formData = new FormData(appointmentForm);

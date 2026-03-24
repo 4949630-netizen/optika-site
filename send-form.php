@@ -41,20 +41,27 @@ $salon   = isset($_POST['salon'])  ? trim((string) $_POST['salon'])  : '';
 $message = isset($_POST['message']) ? trim((string) $_POST['message']) : '';
 
 /**
- * Приводит ввод к 11 цифрам, начинающимся с 7, или возвращает null.
+ * Ровно 11 цифр, первая — 7 или 8. Возвращает ['ok'=>true,'digits'=>...] или ['ok'=>false,'error'=>...].
+ *
+ * @return array{ok: bool, digits?: string, error?: string}
  */
-function normalize_ru_phone_digits(string $phone): ?string {
+function validate_ru_phone(string $phone): array {
     $d = preg_replace('/\D/u', '', $phone);
-    if (strlen($d) === 11 && $d[0] === '8') {
+    $len = strlen($d);
+    if ($len < 11) {
+        return ['ok' => false, 'error' => 'Недостаточно цифр. Введите полный номер: 11 цифр, начиная с +7 или 8.'];
+    }
+    if ($len > 11) {
+        return ['ok' => false, 'error' => 'Слишком много цифр. Нужно ровно 11 цифр в формате +7 или 8…'];
+    }
+    $first = $d[0];
+    if ($first !== '7' && $first !== '8') {
+        return ['ok' => false, 'error' => 'Номер должен начинаться с +7 или 8 (российский формат).'];
+    }
+    if ($first === '8') {
         $d = '7' . substr($d, 1);
     }
-    if (strlen($d) === 10) {
-        $d = '7' . $d;
-    }
-    if (strlen($d) === 11 && $d[0] === '7') {
-        return $d;
-    }
-    return null;
+    return ['ok' => true, 'digits' => $d];
 }
 
 function format_ru_phone_display(string $d11): string {
@@ -67,12 +74,13 @@ if ($name === '' || $phone === '') {
     exit;
 }
 
-$phoneDigits = normalize_ru_phone_digits($phone);
-if ($phoneDigits === null) {
+$phoneValidation = validate_ru_phone($phone);
+if (!$phoneValidation['ok']) {
     http_response_code(400);
-    echo json_encode(['ok' => false, 'error' => 'Укажите полный номер: 10 цифр или с 7/8 в начале.']);
+    echo json_encode(['ok' => false, 'error' => $phoneValidation['error']]);
     exit;
 }
+$phoneDigits = $phoneValidation['digits'];
 $phone = format_ru_phone_display($phoneDigits);
 
 $subject = 'Новая заявка с сайта optikadobryhcen.ru';
