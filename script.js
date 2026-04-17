@@ -157,7 +157,7 @@ if (appointmentForm) {
                     return;
                 }
                 if (data.ok || data.success) {
-                    metrikaGoal('forma_zapis');
+                    metrikaGoal('form_popup_submit');
                     alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
                     appointmentForm.reset();
                     closeAppointmentModal();
