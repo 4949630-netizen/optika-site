@@ -1483,6 +1483,53 @@ body {
 }
 
 /* Appointment Section — мобильный стиль */
+.appointment-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+}
+
+.appointment-modal.is-open {
+    display: block;
+}
+
+.appointment-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.72);
+}
+
+.appointment-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 980px);
+    max-height: 100vh;
+    margin: 0 auto;
+    overflow-y: auto;
+    padding: 1.5rem 0 2rem;
+}
+
+.appointment-modal__close {
+    position: sticky;
+    top: 0.5rem;
+    left: calc(100% - 3rem);
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--gray-700);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.appointment-modal-open {
+    overflow: hidden;
+}
+
 .appointment {
     padding: 0 0 2.5rem;
     background: linear-gradient(180deg, #f97316 0%, #ea580c 35%, #c2410c 100%);
@@ -1619,7 +1666,7 @@ body {
     transition: opacity 0.2s, transform 0.2s;
     background: linear-gradient(90deg, #fb923c 0%, #ea580c 50%, #c2410c 100%);
     color: #fff;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
 }
 
 .btn-appointment-submit:hover {
@@ -1636,29 +1683,17 @@ body {
     list-style: none;
     margin: 0 0 1rem;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
 }
 
 .appointment-benefits li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9375rem;
+    font-size: 0.8125rem;
     color: var(--gray-700);
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-}
-
-.appointment-benefits-icon {
-    flex-shrink: 0;
-    font-size: 1rem;
-    color: var(--primary-600);
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-}
-
-.appointment-form-row-wrap {
-    margin-bottom: 1.25rem;
+    line-height: 1.35;
+    margin-bottom: 0;
 }
 
 .appointment-form-row {
@@ -1666,55 +1701,56 @@ body {
     grid-template-columns: 1fr;
     gap: 1rem;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
-.appointment-callback-line {
+.appointment-or-divider {
     display: flex;
     align-items: center;
+    gap: 0.75rem;
+    margin: 0.25rem 0 0.9rem;
+}
+
+.appointment-or-divider::before,
+.appointment-or-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+}
+
+.appointment-or-divider span {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    letter-spacing: 0.04em;
+}
+
+.appointment-whatsapp-btn {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    font-size: 1.0625rem;
-    font-weight: 500;
-    color: var(--gray-700);
-    margin: 0;
-}
-
-.appointment-callback-icon {
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
     font-size: 1rem;
-    color: var(--primary-600);
+    font-weight: 700;
+    transition: filter 0.2s, transform 0.2s;
 }
 
-.appointment-comment-details {
-    margin: 0 0 1rem;
+.appointment-whatsapp-btn:hover {
+    color: #fff;
+    filter: brightness(0.96);
+    transform: translateY(-1px);
 }
 
-.appointment-comment-summary {
-    font-size: 0.9375rem;
-    color: var(--gray-500);
-    cursor: pointer;
-    list-style: none;
-    padding-left: 1.25rem;
-    position: relative;
-}
-
-.appointment-comment-summary::-webkit-details-marker {
-    display: none;
-}
-
-.appointment-comment-summary::before {
-    content: "+";
-    position: absolute;
-    left: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--gray-500);
-}
-
-.appointment-comment-details[open] .appointment-comment-summary::before {
-    content: "−";
-}
-
-.appointment-comment-inner {
-    margin-top: 0.75rem;
+.appointment-whatsapp-icon {
+    width: 1.15rem;
+    height: 1.15rem;
 }
 
 .appointment-after-block {
@@ -1924,20 +1960,10 @@ body {
     .appointment-promo-desc {
         font-size: 1rem;
     }
-    .appointment-form-row-wrap {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 1rem 1.5rem;
-    }
     .appointment-form-row {
         grid-template-columns: 1fr 1fr;
         gap: 1.25rem;
-        flex: 1 1 auto;
-        min-width: 0;
-    }
-    .appointment-callback-line {
-        flex-shrink: 0;
+        margin-bottom: 1rem;
     }
 }
 

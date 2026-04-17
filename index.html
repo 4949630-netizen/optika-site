@@ -22,7 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Оптика Нижний Новгород — официальный сайт | Оптика добрых цен">
     <meta name="twitter:description" content="Официальный сайт оптики в Нижнем Новгороде. Очки от 2 990 ₽. Проверка зрения бесплатно.">
-    <link rel="stylesheet" href="styles.css?v=2026032407">
+    <link rel="stylesheet" href="styles.css?v=2026041702">
     <!-- Разметка для поисковиков: оптика в Нижнем Новгороде -->
     <script type="application/ld+json">
     {
@@ -677,86 +677,90 @@
             </div>
         </section>
 
-        <!-- Appointment Form Section (мобильный стиль) -->
-        <section id="appointment" class="appointment">
-            <div class="appointment-promo">
-                <div class="container">
-                    <h2 class="appointment-promo-title">Бесплатная проверка зрения</h2>
-                    <p class="appointment-promo-accent">за 15 минут</p>
-                    <p class="appointment-promo-desc">Подберем удобное время и ближайший салон. Проверка ни к чему не обязывает.</p>
-                </div>
-            </div>
+        <!-- Popup-форма записи -->
+        <div id="appointmentModal" class="appointment-modal" aria-hidden="true">
+            <div class="appointment-modal__overlay" data-close-appointment-modal></div>
+            <div class="appointment-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="appointment-modal-title">
+                <button type="button" class="appointment-modal__close" aria-label="Закрыть форму записи" data-close-appointment-modal>×</button>
 
-            <div class="container">
-                <div class="appointment-card">
-                    <h3 class="appointment-card-title">Запишитесь на <span class="appointment-card-title-accent">бесплатную проверку</span></h3>
-                    <p class="appointment-card-subtitle">Подберем решение под ваш образ жизни</p>
+                <section class="appointment">
+                    <div class="appointment-promo">
+                        <div class="container">
+                            <h2 id="appointment-modal-title" class="appointment-promo-title">Бесплатная проверка зрения</h2>
+                            <p class="appointment-promo-accent">за 15 минут</p>
+                            <p class="appointment-promo-desc">Подберем удобное время и ближайший салон. Проверка ни к чему не обязывает.</p>
+                        </div>
+                    </div>
 
-                    <form class="appointment-form" id="appointmentForm">
-                        <div class="appointment-form-row-wrap">
-                            <div class="appointment-form-row">
-                                <div class="form-group form-group--icon form-group--icon-name">
-                                    <label for="name" class="form-label">Имя</label>
-                                    <div class="form-input-wrap">
-                                        <input type="text" id="name" name="name" class="form-input" required placeholder="Ваше имя">
+                    <div class="container">
+                        <div class="appointment-card">
+                            <h3 class="appointment-card-title">Записаться на бесплатную проверку</h3>
+
+                            <form class="appointment-form" id="appointmentForm">
+                                <div class="appointment-form-row">
+                                    <div class="form-group form-group--icon form-group--icon-name">
+                                        <label for="name" class="form-label">Имя</label>
+                                        <div class="form-input-wrap">
+                                            <input type="text" id="name" name="name" class="form-input" required placeholder="Ваше имя">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group--icon form-group--icon-phone">
+                                        <label for="phone" class="form-label">Телефон</label>
+                                        <div class="form-input-wrap">
+                                            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+7 (999) 123-45-67" inputmode="tel" autocomplete="tel" maxlength="18">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group form-group--icon form-group--icon-phone">
-                                    <label for="phone" class="form-label">Телефон</label>
+
+                                <div class="form-group form-group--icon form-group--icon-salon appointment-salon">
+                                    <label for="salon" class="form-label">Выберите ближайший салон (необязательно)</label>
                                     <div class="form-input-wrap">
-                                        <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+7 (999) 123-45-67" inputmode="tel" autocomplete="tel" maxlength="18">
+                                        <select id="salon" name="salon" class="form-input form-select">
+                                        <option value="">Выберите салон</option>
+                                        <option value="Ленина, 76">пр. Ленина, 76 (срочные заказы)</option>
+                                        <option value="Веденяпина, 1А">ул. Веденяпина, 1А</option>
+                                        <option value="Дьяконова, 24А">ул. Дьяконова, 24А</option>
+                                        <option value="Ленина, 113">пр. Ленина, 113 (ТЦ Окей)</option>
+                                        <option value="Коминтерна, 117">ул. Коминтерна, 117 (ТЦ Сормовские Зори)</option>
+                                        <option value="Бурнаковская, 103А">ул. Бурнаковская, 103А (ТЦ Бурнаковский)</option>
+                                        <option value="Ленина, 33">пр. Ленина, 33 (ТЦ Муравей)</option>
+                                        <option value="Гагарина, 184">пр. Гагарина, 184</option>
+                                        <option value="Бекетова, 66">ул. Бекетова, 66</option>
+                                        <option value="Посоветуйте сам">Посоветуйте сам</option>
+                                    </select>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="appointment-callback-line"><span class="appointment-callback-icon" aria-hidden="true">⏱</span> Перезвоним в течение 15 минут (в рабочее время с 10:00 до 20:00)</p>
+
+                                <button type="submit" class="btn btn-appointment-submit">
+                                    Перезвоним за 15 минут
+                                    <span class="btn-appointment-arrow" aria-hidden="true">→</span>
+                                </button>
+
+                                <ul class="appointment-benefits">
+                                    <li>✓ Без обязательной покупки</li>
+                                    <li>🔒 Данные защищены</li>
+                                </ul>
+
+                                <div class="appointment-or-divider" role="separator" aria-label="или">
+                                    <span>или</span>
+                                </div>
+
+                                <a
+                                    class="appointment-whatsapp-btn"
+                                    href="https://wa.me/79XXXXXXXXX?text=Здравствуйте!+Хочу+записаться+на+проверку+зрения"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-metrika-goal="transition_whatsapp"
+                                >
+                                    <svg class="appointment-whatsapp-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.9 11.9 0 0 0 12.03 0C5.4 0 .03 5.37.03 12c0 2.11.55 4.17 1.59 5.99L0 24l6.2-1.62A11.96 11.96 0 0 0 12.03 24C18.66 24 24 18.63 24 12a11.9 11.9 0 0 0-3.48-8.52zM12.03 21.9a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.67.96.98-3.58-.24-.37A9.9 9.9 0 0 1 2.13 12c0-5.45 4.44-9.9 9.9-9.9 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.88 7 9.9 9.9 0 0 1-9.87 9.9zm5.43-7.42c-.3-.15-1.78-.88-2.05-.97-.28-.1-.49-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.49a9.07 9.07 0 0 1-1.68-2.08c-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.52.08-.79.38-.28.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.11.57-.09 1.78-.73 2.03-1.44.25-.71.25-1.31.18-1.44-.08-.13-.28-.2-.59-.35z"/></svg>
+                                    Написать в WhatsApp
+                                </a>
+                            </form>
                         </div>
-
-                        <div class="form-group form-group--icon form-group--icon-salon appointment-salon">
-                            <label for="salon" class="form-label">Ближайший салон (по желанию)</label>
-                            <div class="form-input-wrap">
-                                <select id="salon" name="salon" class="form-input form-select">
-                                <option value="">Выберите салон</option>
-                                <option value="Ленина, 76">пр. Ленина, 76 (срочные заказы)</option>
-                                <option value="Веденяпина, 1А">ул. Веденяпина, 1А</option>
-                                <option value="Дьяконова, 24А">ул. Дьяконова, 24А</option>
-                                <option value="Ленина, 113">пр. Ленина, 113 (ТЦ Окей)</option>
-                                <option value="Коминтерна, 117">ул. Коминтерна, 117 (ТЦ Сормовские Зори)</option>
-                                <option value="Бурнаковская, 103А">ул. Бурнаковская, 103А (ТЦ Бурнаковский)</option>
-                                <option value="Ленина, 33">пр. Ленина, 33 (ТЦ Муравей)</option>
-                                <option value="Гагарина, 184">пр. Гагарина, 184</option>
-                                <option value="Бекетова, 66">ул. Бекетова, 66</option>
-                                <option value="Кораблестроителей, 4">пр. Кораблестроителей, 4 (скоро открытие)</option>
-                            </select>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-appointment-submit">
-                            Записаться на бесплатную проверку зрения
-                            <span class="btn-appointment-arrow" aria-hidden="true">→</span>
-                        </button>
-
-                        <details class="appointment-comment-details">
-                            <summary class="appointment-comment-summary">Добавить комментарий (по желанию)</summary>
-                            <div class="form-group appointment-comment-inner">
-                                <textarea id="message" name="message" class="form-textarea" rows="2" placeholder=""></textarea>
-                            </div>
-                        </details>
-
-                        <ul class="appointment-benefits">
-                            <li><span class="appointment-benefits-icon" aria-hidden="true">✓</span> Без обязательной покупки</li>
-                            <li><span class="appointment-benefits-icon" aria-hidden="true">🔒</span> Ваши данные <strong>защищены</strong></li>
-                        </ul>
-
-                        <div class="appointment-after-block">
-                            <p class="appointment-after-lead">После проверки вы получите</p>
-                            <p class="appointment-after-main"><span class="appointment-after-icon" aria-hidden="true">👓</span> 3 варианта очков на выбор — от базового до премиального</p>
-                        </div>
-
-                        <p class="form-privacy form-privacy--card">Отправляя заявку, вы соглашаетесь на <a href="politika-konfidencialnosti.html">обработку персональных данных</a>.</p>
-                    </form>
-                </div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
 
         <!-- Финальный призыв -->
         <section class="cta-final">
@@ -845,6 +849,6 @@
 
     <!-- Замените ВАШ_КЛЮЧ_ЯНДЕКС_КАРТ на ключ с https://developer.tech.yandex.ru/ (JavaScript API и HTTP Геокодер) -->
     <script>window.YANDEX_MAPS_API_KEY = '5c541c1d-a961-447a-8bdd-05dd6c9009f5';</script>
-    <script src="script.js?v=2026032412"></script>
+    <script src="script.js?v=2026041701"></script>
 </body>
 </html>

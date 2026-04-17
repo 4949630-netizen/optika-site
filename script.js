@@ -5,8 +5,36 @@ function metrikaGoal(id) {
 }
 
 // Цель «Записаться» — клик по любой кнопке/ссылке записи
+var appointmentModal = document.getElementById('appointmentModal');
+function openAppointmentModal() {
+    if (!appointmentModal) return;
+    appointmentModal.classList.add('is-open');
+    appointmentModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('appointment-modal-open');
+}
+function closeAppointmentModal() {
+    if (!appointmentModal) return;
+    appointmentModal.classList.remove('is-open');
+    appointmentModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('appointment-modal-open');
+}
+
 document.querySelectorAll('a[href="#appointment"]').forEach(function (el) {
-    el.addEventListener('click', function () { metrikaGoal('zapis'); });
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+        metrikaGoal('zapis');
+        openAppointmentModal();
+    });
+});
+
+document.querySelectorAll('[data-close-appointment-modal]').forEach(function (el) {
+    el.addEventListener('click', function () {
+        closeAppointmentModal();
+    });
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAppointmentModal();
 });
 
 // Переходы в соцсети и 2ГИС — цели для отчётов в Метрике
@@ -130,6 +158,7 @@ if (appointmentForm) {
                     metrikaGoal('forma_zapis');
                     alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
                     appointmentForm.reset();
+                    closeAppointmentModal();
                 } else {
                     alert((data.error || 'Ошибка отправки') + '. Позвоните нам: +7 (977) 969-94-87');
                 }
