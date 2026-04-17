@@ -76,6 +76,42 @@ if (mobileMenu) {
     });
 }
 
+// Плавающая кнопка WhatsApp: на десктопе показываем после прокрутки вниз > 300px
+(function () {
+    var waBtn = document.getElementById('waFloatBtn');
+    if (!waBtn) return;
+
+    var ticking = false;
+    function updateWaFloatVisibility() {
+        ticking = false;
+        var isDesktop = window.innerWidth >= 768;
+        if (!isDesktop) {
+            waBtn.classList.remove('wa-float-btn--visible');
+            return;
+        }
+        var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (y > 300) {
+            waBtn.classList.add('wa-float-btn--visible');
+        } else {
+            waBtn.classList.remove('wa-float-btn--visible');
+        }
+    }
+
+    function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        if (typeof window.requestAnimationFrame === 'function') {
+            window.requestAnimationFrame(updateWaFloatVisibility);
+        } else {
+            setTimeout(updateWaFloatVisibility, 0);
+        }
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    requestUpdate();
+})();
+
 // Заявки на info@optikadobryhcen.ru (переадресация на Info@ofta-group.ru в ispmanager).
 var FORM_HANDLER = 'php';
 var FORMSPREE_FORM_ID = '';

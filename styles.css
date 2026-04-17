@@ -2123,6 +2123,50 @@ body.appointment-modal-open {
     color: #fff;
 }
 
+/* Плавающая кнопка WhatsApp */
+.wa-float-btn {
+    position: fixed;
+    right: calc(24px + var(--safe-area-inset-right, 0px));
+    bottom: calc(24px + var(--safe-area-inset-bottom, 0px));
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: #25D366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1);
+}
+
+.wa-float-btn--visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wa-float-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+}
+
+.wa-float-icon {
+    width: 28px;
+    height: 28px;
+}
+
+@media (max-width: 767px) {
+    .wa-float-btn {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
 /* Плавающая кнопка «Позвонить» */
 .float-phone-btn {
     position: fixed;
