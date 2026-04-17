@@ -67,12 +67,14 @@ if (mobileMenuBtn && mobileMenu) {
 }
 
 // Close mobile menu when clicking on a link
-const mobileMenuLinks = mobileMenu?.querySelectorAll('.nav-link');
-mobileMenuLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
+if (mobileMenu) {
+    const mobileMenuLinks = mobileMenu.querySelectorAll('.nav-link');
+    mobileMenuLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            mobileMenu.classList.remove('active');
+        });
     });
-});
+}
 
 // Заявки на info@optikadobryhcen.ru (переадресация на Info@ofta-group.ru в ispmanager).
 var FORM_HANDLER = 'php';
