@@ -1564,10 +1564,28 @@ body {
     border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    min-height: 0;
+    height: auto;
+}
+
+.salon-page .salons-map iframe {
+    display: block;
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+    border: 0;
 }
 
 .salon-page .promos-cta {
     text-align: center;
+}
+
+.salon-page .promos-cta .btn,
+.salon-page .promos-cta .btn:visited,
+.salon-page .promos-cta .btn:hover,
+.salon-page .promos-cta .btn:active {
+    color: #ffffff !important;
+    text-decoration: none;
 }
 
 .salon-page .promos {
@@ -1613,6 +1631,11 @@ body {
 
     .salon-page .appointment-card {
         padding: 1.25rem;
+    }
+
+    .salon-page .salons-map iframe {
+        height: 320px;
+        min-height: 320px;
     }
 }
 
