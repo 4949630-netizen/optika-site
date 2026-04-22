@@ -1598,6 +1598,37 @@ body {
     text-decoration: none;
 }
 
+/* Десктоп: глобальные правила для карты на главной (.salons-map min-height 520px)
+   перебивают салонные страницы — фиксируем явно для .salon-page */
+@media (min-width: 768px) {
+    .salon-page .salons-map {
+        min-height: 0 !important;
+        height: auto !important;
+    }
+
+    .salon-page .salons-map iframe {
+        height: 420px !important;
+        min-height: 420px !important;
+        max-height: 420px !important;
+    }
+
+    /* Кнопка отзывов: перебить возможные конфликты с .btn-primary на фоне */
+    .salon-page .promos-cta .btn.btn-primary,
+    .salon-page .promos-cta .btn.btn-primary:visited,
+    .salon-page .promos-cta .btn.btn-primary:hover,
+    .salon-page .promos-cta .btn.btn-primary:active {
+        color: #ffffff !important;
+        background: var(--primary-600) !important;
+        border-color: var(--primary-600) !important;
+    }
+
+    .salon-page .promos-cta .btn.btn-primary:hover {
+        background: var(--accent-orange) !important;
+        border-color: var(--accent-orange) !important;
+        color: #ffffff !important;
+    }
+}
+
 .salon-page .promos {
     padding-bottom: 1rem;
 }
@@ -1647,6 +1678,35 @@ body {
     .salon-page .salon-actions .salon-route-link {
         width: 100%;
         justify-content: center;
+    }
+
+    /* На главной для мобилы у «маршрута» есть отрицательный margin — на салонных страницах убираем */
+    .salon-page .salon-actions .salon-route-link {
+        margin-left: 0 !important;
+    }
+
+    /* Единый вид всех CTA в карточке салона на мобиле */
+    .salon-page .salon-actions a.salon-btn,
+    .salon-page .salon-actions a.salon-btn.salon-route-link {
+        border: 2px solid #ea580c !important;
+        border-radius: 0.65rem !important;
+        padding: 0.55rem 1rem !important;
+        min-height: 46px !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        background: #ea580c !important;
+        text-decoration: none !important;
+    }
+
+    .salon-page .salon-actions a.salon-btn:hover,
+    .salon-page .salon-actions a.salon-btn:focus,
+    .salon-page .salon-actions a.salon-btn:active,
+    .salon-page .salon-actions a.salon-btn.salon-route-link:hover,
+    .salon-page .salon-actions a.salon-btn.salon-route-link:focus,
+    .salon-page .salon-actions a.salon-btn.salon-route-link:active {
+        background: #c2410c !important;
+        border-color: #c2410c !important;
+        color: #ffffff !important;
     }
 
     .salon-page .salons-map iframe {
