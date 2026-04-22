@@ -1435,6 +1435,99 @@ body {
     text-decoration: underline;
 }
 
+/* Salon pages: consistent readable layout */
+.salon-page {
+    background: var(--bg-warm, #fdfaf7);
+}
+
+.salon-page .catalog {
+    padding: 1.25rem 0 0.25rem !important;
+}
+
+.salon-page .catalog .section-description {
+    max-width: 72rem;
+    margin: 0 auto;
+    font-size: 0.95rem;
+}
+
+.salon-page .hero {
+    padding: 2rem 0 1.75rem;
+    background: linear-gradient(90deg, #1f2937 0%, #ea580c 52%, #fde7cf 100%);
+}
+
+.salon-page .hero-content {
+    max-width: 72rem;
+    margin: 0 auto;
+}
+
+.salon-page .hero-title {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.salon-page .salons,
+.salon-page .frames,
+.salon-page .promos,
+.salon-page .appointment {
+    padding: 2.25rem 0;
+}
+
+.salon-page .salon-card {
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.salon-page .salon-address {
+    font-size: 1.125rem;
+}
+
+.salon-page .salon-hours,
+.salon-page .salon-meta {
+    font-size: 1rem;
+}
+
+.salon-page .salon-actions {
+    gap: 0.75rem;
+}
+
+.salon-page .frames-gallery {
+    gap: 1rem;
+}
+
+.salon-page .frames-gallery-item {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.salon-page .salons-map {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+.salon-page .promos-cta {
+    text-align: center;
+}
+
+.salon-page .appointment-card {
+    max-width: 54rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .salon-page .hero {
+        padding: 1.5rem 0 1.25rem;
+    }
+
+    .salon-page .salons,
+    .salon-page .frames,
+    .salon-page .promos,
+    .salon-page .appointment {
+        padding: 1.5rem 0;
+    }
+}
+
 @media (min-width: 768px) {
     .manifesto {
         padding: 3.5rem 0;
