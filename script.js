@@ -8,6 +8,11 @@ function metrikaGoal(id) {
 var appointmentModal = document.getElementById('appointmentModal');
 function openAppointmentModal() {
     if (!appointmentModal) return;
+    var modalSalonInput = appointmentModal.querySelector('input[name="salon"]');
+    var heroTitle = document.querySelector('.hero-title-line');
+    if (modalSalonInput && heroTitle && heroTitle.textContent) {
+        modalSalonInput.value = heroTitle.textContent.trim();
+    }
     appointmentModal.classList.add('is-open');
     appointmentModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('appointment-modal-open');
@@ -155,7 +160,7 @@ if (appointmentForm) {
             submitBtn.innerHTML = 'Отправка…';
         }
 
-        var phoneInput = document.getElementById('phone');
+        var phoneInput = appointmentForm.querySelector('input[name="phone"]');
         if (phoneInput) {
             var phoneCheck = validateRussianPhone(phoneInput.value);
             if (!phoneCheck.ok) {
