@@ -1440,6 +1440,34 @@ body {
     background: var(--bg-warm, #fdfaf7);
 }
 
+.salon-page,
+.salon-page p,
+.salon-page li,
+.salon-page .section-description {
+    color: var(--text-color, #0f172a);
+}
+
+.salon-page a {
+    color: var(--primary-color, #ea580c);
+    text-decoration-color: rgba(234, 88, 12, 0.45);
+    text-underline-offset: 2px;
+}
+
+.salon-page a:hover {
+    color: #c2410c;
+    text-decoration-color: rgba(194, 65, 12, 0.6);
+}
+
+.salon-page .catalog .section-description a {
+    color: #334155;
+    text-decoration: none;
+}
+
+.salon-page .catalog .section-description a:hover {
+    color: var(--primary-color, #ea580c);
+    text-decoration: underline;
+}
+
 .salon-page .catalog {
     padding: 1.25rem 0 0.25rem !important;
 }
@@ -1484,6 +1512,7 @@ body {
 .salon-page .salon-hours,
 .salon-page .salon-meta {
     font-size: 1rem;
+    color: #334155;
 }
 
 .salon-page .salon-actions {
@@ -1510,9 +1539,33 @@ body {
     text-align: center;
 }
 
+.salon-page .promos {
+    padding-bottom: 1rem;
+}
+
+.salon-page .appointment {
+    padding: 1.5rem 0 2.75rem;
+    background: linear-gradient(180deg, #fb923c 0%, #ea580c 42%, #c2410c 100%);
+}
+
 .salon-page .appointment-card {
-    max-width: 54rem;
+    max-width: 56rem;
     margin: 0 auto;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+    padding: 1.75rem 2rem;
+}
+
+.salon-page .appointment-card-title {
+    margin-bottom: 0.9rem;
+}
+
+.salon-page .appointment-form-row {
+    align-items: end;
+}
+
+.salon-page .btn-appointment-submit {
+    margin-top: 0.4rem;
 }
 
 @media (max-width: 767px) {
@@ -1525,6 +1578,10 @@ body {
     .salon-page .promos,
     .salon-page .appointment {
         padding: 1.5rem 0;
+    }
+
+    .salon-page .appointment-card {
+        padding: 1.25rem;
     }
 }
 
