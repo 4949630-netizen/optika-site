@@ -1376,6 +1376,65 @@ body {
 .manifesto-body p:last-child {
     margin-bottom: 0;
 }
+
+/* Vacancy section: readable long-form text layout */
+.vacancy .section-title {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vacancy-body {
+    max-width: 52rem;
+    text-align: left;
+}
+
+.vacancy-body p {
+    text-align: left;
+}
+
+.vacancy-body h3 {
+    margin: 1.75rem 0 0.75rem;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--primary-color);
+    background: #fff;
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+.vacancy-body ul {
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.25rem 1rem 2rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0.75rem;
+}
+
+.vacancy-body li {
+    color: var(--gray-700);
+    line-height: 1.65;
+    margin-bottom: 0.65rem;
+}
+
+.vacancy-body li:last-child {
+    margin-bottom: 0;
+}
+
+.vacancy-body p strong {
+    color: var(--gray-900);
+}
+
+.vacancy-body a[href^="tel:"] {
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.vacancy-body a[href^="tel:"]:hover {
+    text-decoration: underline;
+}
+
 @media (min-width: 768px) {
     .manifesto {
         padding: 3.5rem 0;
@@ -1386,6 +1445,10 @@ body {
     .manifesto-body p {
         font-size: 1.0625rem;
         line-height: 1.75;
+    }
+
+    .vacancy-body h3 {
+        font-size: 1.125rem;
     }
 }
 
