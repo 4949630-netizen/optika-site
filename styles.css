@@ -1447,6 +1447,15 @@ body {
     color: var(--text-color, #0f172a);
 }
 
+.salon-page p,
+.salon-page li,
+.salon-page .section-description,
+.salon-page .faq-answer {
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
 .salon-page a {
     color: var(--primary-color, #ea580c);
     text-decoration-color: rgba(234, 88, 12, 0.45);
@@ -1493,6 +1502,28 @@ body {
     line-height: 1.2;
 }
 
+.salon-page .hero-subtitle {
+    margin-top: 0.7rem;
+    margin-bottom: 0;
+    max-width: 46rem;
+    font-size: 1.65rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.95);
+    text-wrap: balance;
+}
+
+.salon-page .section-title {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: balance;
+}
+
+.salon-page .section-description {
+    max-width: 52rem;
+}
+
 .salon-page .salons,
 .salon-page .frames,
 .salon-page .promos,
@@ -1513,6 +1544,15 @@ body {
 .salon-page .salon-meta {
     font-size: 1rem;
     color: #334155;
+}
+
+.salon-page .manifesto-body {
+    max-width: 54rem;
+    text-align: left;
+}
+
+.salon-page .manifesto-body p {
+    text-align: left;
 }
 
 .salon-page .salon-meta a,
@@ -1588,6 +1628,35 @@ body {
 
 .salon-page .promos-cta {
     text-align: center;
+}
+
+.salon-page .salon-team-mini {
+    max-width: 52rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.salon-page .salon-team-mini-card {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0.75rem;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    text-align: center;
+}
+
+.salon-page .salon-team-mini-name {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--gray-900);
+}
+
+.salon-page .salon-team-mini-role {
+    margin: 0.35rem 0 0;
+    color: var(--gray-600);
+    font-size: 0.95rem;
 }
 
 .salon-page .salon-reviews-carousel {
@@ -1684,6 +1753,7 @@ body {
 
 .salon-page .appointment-card-title {
     margin-bottom: 0.9rem;
+    text-wrap: balance;
 }
 
 .salon-page .appointment-form-row {
@@ -1694,9 +1764,59 @@ body {
     margin-top: 0.4rem;
 }
 
+.salon-page .appointment-card .section-description {
+    margin-top: 0.9rem !important;
+    text-align: center;
+}
+
+.salon-page .appointment-card .appointment-whatsapp-btn,
+.salon-page .appointment-card .appointment-whatsapp-btn:visited,
+.salon-page .appointment-card .appointment-whatsapp-btn:hover,
+.salon-page .appointment-card .appointment-whatsapp-btn:active {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    background: #25D366;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.salon-page .appointment-card .appointment-whatsapp-btn::before {
+    content: "";
+    width: 1.15rem;
+    height: 1.15rem;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg class='appointment-whatsapp-icon' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='white'%3E%3Cpath d='M20.52 3.48A11.9 11.9 0 0 0 12.03 0C5.4 0 .03 5.37.03 12c0 2.11.55 4.17 1.59 5.99L0 24l6.2-1.62A11.96 11.96 0 0 0 12.03 24C18.66 24 24 18.63 24 12a11.9 11.9 0 0 0-3.48-8.52zM12.03 21.9a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.67.96.98-3.58-.24-.37A9.9 9.9 0 0 1 2.13 12c0-5.45 4.44-9.9 9.9-9.9 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.88 7 9.9 9.9 0 0 1-9.87 9.9zm5.43-7.42c-.3-.15-1.78-.88-2.05-.97-.28-.1-.49-.15-.69.15-.2.3-.79.97-.97 1.17-.18.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.49a9.07 9.07 0 0 1-1.68-2.08c-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.69-1.66-.94-2.27-.25-.6-.5-.52-.69-.53h-.59c-.2 0-.52.08-.79.38-.28.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.71.22 1.35.19 1.86.11.57-.09 1.78-.73 2.03-1.44.25-.71.25-1.31.18-1.44-.08-.13-.28-.2-.59-.35z'/%3E%3C/svg%3E");
+}
+
+
 @media (max-width: 767px) {
     .salon-page .hero {
         padding: 1.5rem 0 1.25rem;
+    }
+
+    .salon-page .hero-subtitle {
+        margin-top: 0.6rem;
+        font-size: 1.05rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.96);
+    }
+
+    .salon-page p,
+    .salon-page li,
+    .salon-page .section-description,
+    .salon-page .faq-answer {
+        line-height: 1.55;
     }
 
     .salon-page .salons,
@@ -1748,6 +1868,13 @@ body {
     .salon-page .salons-map iframe {
         height: 320px;
         min-height: 320px;
+    }
+}
+
+@media (min-width: 768px) {
+    .salon-page .salon-team-mini {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 }
 

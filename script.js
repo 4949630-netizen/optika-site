@@ -296,6 +296,380 @@ if (currentYearElement) {
 
 // Карусель отзывов на страницах салонов
 (function () {
+    var salonSeoByPath = {
+        '/salony/gagarina-184': {
+            meta: 'Оптика в Щербинках, пр. Гагарина 184. Очки от 2 990 ₽ и бесплатная проверка зрения. Рядом с пл. Маршала Жукова. Пн-Сб 9:30-19:30, Вс 10:00-18:00. Запись онлайн.',
+            image: 'https://optikadobryhcen.ru/salony/images/gagarina-184-fasad.png'
+        },
+        '/salony/burnakovskaya-103a': {
+            meta: 'Оптика на Бурнаковке, ул. Бурнаковская 103А, ТЦ «Бурнаковский». Очки от 2 990 ₽ и бесплатная проверка зрения. Ежедневно 10:00-20:00. Удобно для жителей района.',
+            image: 'https://optikadobryhcen.ru/salony/images/burnakovskaya-103a-fasad.png'
+        },
+        '/salony/lenina-76': {
+            meta: 'Очки за 1 час при стандартном рецепте. Оптика у метро Пролетарская, пр. Ленина 76. Базовый комплект от 2 990 ₽. Пн-Сб 9:00-20:00, Вс 10:00-19:00. Запись онлайн.',
+            image: 'https://optikadobryhcen.ru/salony/images/lenina-76-fasad.png'
+        },
+        '/salony/lenina-33-muravey': {
+            meta: 'Оптика в ТЦ Муравей, пр. Ленина 33. Рейтинг 5.0, очки от 2 990 ₽ и бесплатная проверка зрения. Рядом с метро Заречная. Ежедневно 9:00-21:00. Запись онлайн.',
+            image: 'https://optikadobryhcen.ru/salony/images/lenina-33-muravey-fasad.png'
+        },
+        '/salony/venedyapina-1a': {
+            meta: 'Оптика в Автозаводском районе, ул. Веденяпина 1А. Очки для взрослых и детей от 2 990 ₽, проверка зрения бесплатно. Пн-Сб 10:00-20:00, Вс 10:00-19:00. Запись онлайн.',
+            image: 'https://optikadobryhcen.ru/salony/images/venedyapina-1a-fasad.png'
+        },
+        '/salony/dyakonova-24a': {
+            meta: 'Оптика в Автозаводском районе, ул. Дьяконова 24А. Очки от 2 990 ₽ и бесплатная проверка зрения. Рядом со зданием Сбербанка в микрорайоне Северный. Запись онлайн.',
+            image: 'https://optikadobryhcen.ru/salony/images/dyakonova-24a-fasad.png'
+        },
+        '/salony/lenina-113-ok': {
+            meta: 'Оптика в ТЦ Окей, пр. Ленина 113, рядом с метро Кировская. Очки от 2 990 ₽ и бесплатная проверка зрения. Ежедневно 9:00-20:00. Удобный заезд и парковка.',
+            image: 'https://optikadobryhcen.ru/salony/images/lenina-113-ok-fasad.png'
+        },
+        '/salony/kominterna-117': {
+            meta: 'Оптика в Сормово, ТЦ «Сормовские Зори», ул. Коминтерна 117, 2 этаж. Очки от 2 990 ₽ и бесплатная проверка зрения. Ежедневно 10:00-21:00. Запись онлайн.',
+            image: 'https://optikadobryhcen.ru/salony/images/kominterna-117-fasad.png'
+        },
+        '/salony/beketova-66': {
+            meta: 'Оптика в Советском районе, ул. Бекетова 66, в помещении аптеки Максавит. Очки от 2 990 ₽ и бесплатная проверка зрения. Будни 9:00-20:00, выходные 10:00-19:00.',
+            image: 'https://optikadobryhcen.ru/salony/images/beketova-66-fasad.png'
+        },
+        '/salony/korabley-4': {
+            meta: 'Оптика в Сормово, пр. Кораблестроителей 4. Новый салон 2026, очки от 2 990 ₽ и бесплатная проверка зрения. Рядом с остановкой «Проспект Кораблестроителей».',
+            image: 'https://optikadobryhcen.ru/salony/images/korabley-4-fasad.png'
+        }
+    };
+
+    var currentPath = window.location.pathname.replace(/\/+$/, '');
+    var salonSeo = salonSeoByPath[currentPath];
+
+    if (salonSeo) {
+        var metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            metaDescription.setAttribute('content', salonSeo.meta);
+        }
+    }
+
+    // Приводим WhatsApp-кнопку на салонных страницах к виду главной записи.
+    document.querySelectorAll('.salon-page .appointment-card .section-description a[href*="wa.me"]').forEach(function (link) {
+        link.textContent = 'Написать в WhatsApp';
+        link.classList.add('appointment-whatsapp-btn');
+        var wrapper = link.closest('.section-description');
+        var prev = wrapper ? wrapper.previousElementSibling : null;
+        var hasDivider = !!(prev && prev.classList && prev.classList.contains('appointment-or-divider'));
+        if (wrapper && !hasDivider) {
+            wrapper.insertAdjacentHTML('beforebegin', '<div class="appointment-or-divider" role="separator" aria-label="или"><span>или</span></div>');
+        }
+    });
+
+    // Добавляем блок сотрудников (без фото) на страницах салонов.
+    var teamBySalonPath = {
+        '/salony/gagarina-184': ['Ольга', 'Анна'],
+        '/salony/burnakovskaya-103a': ['Екатерина', 'Марина'],
+        '/salony/lenina-76': ['Светлана', 'Наталья'],
+        '/salony/lenina-33-muravey': ['Ирина', 'Елена'],
+        '/salony/venedyapina-1a': ['Татьяна', 'Юлия'],
+        '/salony/dyakonova-24a': ['Людмила', 'Виктория'],
+        '/salony/lenina-113-ok': ['Дарья', 'Оксана'],
+        '/salony/kominterna-117': ['Елена', 'Надежда'],
+        '/salony/beketova-66': ['Ольга', 'Мария'],
+        '/salony/korabley-4': ['Алина', 'Ксения']
+    };
+    var teamNames = teamBySalonPath[currentPath];
+    if (salonMain && teamNames && !salonMain.querySelector('[data-salon-team]')) {
+        var teamHtml =
+            '<section class="salons" data-salon-team><div class="container">' +
+                '<h2 class="section-title" style="margin-bottom:1rem;">Наши сотрудники в салоне</h2>' +
+                '<div class="salon-team-mini">' +
+                    '<article class="salon-team-mini-card"><h3 class="salon-team-mini-name">' + teamNames[0] + '</h3><p class="salon-team-mini-role">Оптик-консультант</p></article>' +
+                    '<article class="salon-team-mini-card"><h3 class="salon-team-mini-name">' + teamNames[1] + '</h3><p class="salon-team-mini-role">Оптик-консультант</p></article>' +
+                '</div>' +
+            '</div></section>';
+        var promosSection = salonMain.querySelector('section.promos');
+        if (promosSection) {
+            promosSection.insertAdjacentHTML('beforebegin', teamHtml);
+        } else {
+            salonMain.insertAdjacentHTML('beforeend', teamHtml);
+        }
+    }
+
+    // Добавляем микроблок доверия над кнопкой записи.
+    document.querySelectorAll('.salon-page #mini-appointment .appointment-form').forEach(function (form) {
+        if (form.querySelector('.appointment-benefits')) return;
+        var submitBtn = form.querySelector('.btn-appointment-submit');
+        if (!submitBtn) return;
+        var trustHtml =
+            '<ul class="appointment-benefits">' +
+                '<li>✓ Без обязательной покупки</li>' +
+                '<li>✓ Подберем несколько вариантов под бюджет</li>' +
+                '<li>✓ Данные защищены</li>' +
+            '</ul>';
+        submitBtn.insertAdjacentHTML('beforebegin', trustHtml);
+    });
+
+    // Расширяем schema.org для салонов: priceRange, image, sameAs.
+    if (salonSeo) {
+        var sameAs = [
+            'https://vk.ru/optika_dobrih_cen',
+            'https://t.me/optika_dobrih_cen',
+            'https://2gis.ru/n_novgorod/firm/70000001032583529'
+        ];
+        document.querySelectorAll('script[type="application/ld+json"]').forEach(function (scriptEl) {
+            var raw = scriptEl.textContent || '';
+            if (raw.indexOf('"@type":"Optician"') === -1 && raw.indexOf('"@type": "Optician"') === -1) return;
+            try {
+                var data = JSON.parse(raw);
+                data.priceRange = 'от 2 990 ₽';
+                if (!data.image) data.image = salonSeo.image;
+                data.sameAs = sameAs;
+                scriptEl.textContent = JSON.stringify(data);
+            } catch (e) {}
+        });
+    }
+
+    // Добавляем FAQ на страницы салонов, где блока ещё нет.
+    var salonMain = document.querySelector('.salon-page main');
+    if (salonMain && !salonMain.querySelector('section.faq')) {
+        var salonPath = window.location.pathname.replace(/\/+$/, '');
+        var faqBySalonPath = {
+            '/salony/gagarina-184': {
+                title: 'Частые вопросы по салону на Гагарина, 184',
+                items: [
+                    {
+                        q: 'Сколько идти от остановки «пл. Маршала Жукова»?',
+                        a: 'От остановки до салона около 1-2 минут пешком. Вход удобно расположен по пути с проспекта Гагарина.'
+                    },
+                    {
+                        q: 'Можно ли проверить зрение и сразу выбрать очки?',
+                        a: 'Да. В салоне можно пройти бесплатную проверку зрения и сразу подобрать оправу и линзы под ваш бюджет.'
+                    },
+                    {
+                        q: 'Нужно ли заранее записываться?',
+                        a: 'Можно прийти без записи, но по записи мы подберём удобное время и примем без ожидания.'
+                    }
+                ]
+            },
+            '/salony/burnakovskaya-103a': {
+                title: 'Частые вопросы по салону на Бурнаковской, 103А',
+                items: [
+                    {
+                        q: 'Где именно находится салон?',
+                        a: 'Салон находится в ТЦ «Бурнаковский». Это удобно для жителей Бурнаковки и Мещерского микрорайона.'
+                    },
+                    {
+                        q: 'Можно ли подобрать бюджетные очки рядом с домом?',
+                        a: 'Да, в салоне доступны комплекты очков от 2 990 ₽, включая оправу, линзы и работу мастера.'
+                    },
+                    {
+                        q: 'Сколько занимает проверка зрения?',
+                        a: 'Обычно 15-20 минут. После проверки можно сразу оформить заказ на очки.'
+                    }
+                ]
+            },
+            '/salony/lenina-76': {
+                title: 'Частые вопросы про очки за 1 час',
+                items: [
+                    {
+                        q: 'Какие очки делают за 1 час?',
+                        a: 'Срочное изготовление за 1 час доступно для стандартного рецепта без астигматизма высоких степеней. Точный срок подтверждаем после проверки зрения и выбора линз.'
+                    },
+                    {
+                        q: 'Нужна ли запись для срочного изготовления?',
+                        a: 'Рекомендуем позвонить заранее: так мы сразу подскажем, возможно ли изготовление за 1 час в день обращения и подберём удобное время без ожидания.'
+                    },
+                    {
+                        q: 'Где находится салон относительно метро?',
+                        a: 'Салон расположен рядом с метро Пролетарская, в 1-2 минутах пешком от выхода №5.'
+                    }
+                ]
+            },
+            '/salony/lenina-33-muravey': {
+                title: 'Частые вопросы по салону в ТЦ «Муравей»',
+                items: [
+                    {
+                        q: 'Где находится салон в ТЦ «Муравей»?',
+                        a: 'Салон расположен по адресу пр. Ленина, 33, в ТЦ «Муравей», рядом с метро Заречная.'
+                    },
+                    {
+                        q: 'Можно ли зайти без записи во время покупок?',
+                        a: 'Да, можно. Если хотите без ожидания, лучше оставить запись заранее на удобное время.'
+                    },
+                    {
+                        q: 'Проверка зрения действительно бесплатная?',
+                        a: 'Да, проверка зрения бесплатная. После диагностики подберём очки под ваши задачи и бюджет.'
+                    }
+                ]
+            },
+            '/salony/venedyapina-1a': {
+                title: 'Частые вопросы по салону на Веденяпина, 1А',
+                items: [
+                    {
+                        q: 'Подойдут ли здесь очки для всей семьи?',
+                        a: 'Да, в салоне можно подобрать решения для взрослых и детей, чтобы закрыть потребности семьи за один визит.'
+                    },
+                    {
+                        q: 'Где вас найти на Веденяпина?',
+                        a: 'Салон находится рядом с пр. Ильича, напротив ТЦ «Парк Авеню» и «Вкусно — и точка».'
+                    },
+                    {
+                        q: 'Сколько времени занимает подбор очков?',
+                        a: 'Обычно 20-30 минут вместе с проверкой зрения и подбором оправы.'
+                    }
+                ]
+            },
+            '/salony/dyakonova-24a': {
+                title: 'Частые вопросы по салону на Дьяконова, 24А',
+                items: [
+                    {
+                        q: 'Можно ли подобрать очки в день обращения?',
+                        a: 'Да, в день обращения проводим проверку зрения и подбираем оптимальные варианты оправ и линз.'
+                    },
+                    {
+                        q: 'Работаете ли вы в выходные?',
+                        a: 'Да, салон работает без выходных: по будням и в выходные по расписанию точки.'
+                    },
+                    {
+                        q: 'Нужно ли заранее готовить рецепт?',
+                        a: 'Не обязательно. Рецепт можно получить на месте после бесплатной проверки зрения.'
+                    }
+                ]
+            },
+            '/salony/lenina-113-ok': {
+                title: 'Частые вопросы по салону в ТЦ «Окей»',
+                items: [
+                    {
+                        q: 'Где находится салон в ТЦ «Окей»?',
+                        a: 'Салон находится по адресу пр. Ленина, 113, в ТЦ «Окей», рядом с метро Кировская.'
+                    },
+                    {
+                        q: 'Можно ли совместить визит с покупками в ТЦ?',
+                        a: 'Да, это один из самых удобных форматов: проверка зрения и подбор очков без отдельной поездки.'
+                    },
+                    {
+                        q: 'Есть ли парковка рядом?',
+                        a: 'Да, у ТЦ «Окей» удобная парковка, поэтому до салона комфортно добраться на автомобиле.'
+                    }
+                ]
+            },
+            '/salony/kominterna-117': {
+                title: 'Частые вопросы по салону в Сормово',
+                items: [
+                    {
+                        q: 'Где именно находится салон на Коминтерна, 117?',
+                        a: 'Салон расположен в ТЦ «Сормовские Зори», главный вход, 2 этаж.'
+                    },
+                    {
+                        q: 'Можно ли быстро проверить зрение в ТЦ?',
+                        a: 'Да, проверка зрения занимает около 15-20 минут. Удобно зайти во время покупок.'
+                    },
+                    {
+                        q: 'Есть ли запись без ожидания?',
+                        a: 'Да, оставьте заявку заранее, и мы предложим удобный слот без очереди.'
+                    }
+                ]
+            },
+            '/salony/beketova-66': {
+                title: 'Частые вопросы по салону на Бекетова, 66',
+                items: [
+                    {
+                        q: 'Где искать салон на Бекетова, 66?',
+                        a: 'Салон находится в помещении аптеки «Максавит», поэтому вход легко узнать.'
+                    },
+                    {
+                        q: 'Можно ли прийти после работы?',
+                        a: 'Да, точка работает по расширенному графику, включая выходные.'
+                    },
+                    {
+                        q: 'Сколько стоят очки «под ключ»?',
+                        a: 'Базовые комплекты начинаются от 2 990 ₽: оправа, линзы с мультипокрытием и работа мастера.'
+                    }
+                ]
+            },
+            '/salony/korabley-4': {
+                title: 'Частые вопросы по новому салону в Сормово',
+                items: [
+                    {
+                        q: 'Где находится новый салон на Кораблестроителей, 4?',
+                        a: 'Салон расположен рядом с остановкой «Проспект Кораблестроителей», примерно 1 минута пешком.'
+                    },
+                    {
+                        q: 'Чем удобен этот салон для жителей Сормово?',
+                        a: 'Это новый и светлый салон рядом с домом: можно быстро проверить зрение и подобрать очки без поездки в центр.'
+                    },
+                    {
+                        q: 'Нужно ли записываться заранее?',
+                        a: 'Можно прийти сразу, но запись помогает выбрать удобное время и пройти без ожидания.'
+                    }
+                ]
+            }
+        };
+
+        var currentFaq = faqBySalonPath[salonPath] || {
+            title: 'Частые вопросы',
+            items: [
+                {
+                    q: 'Нужно ли записываться заранее?',
+                    a: 'Можно прийти и без записи, но лучше оставить заявку заранее. Так мы подберём удобное время и примем без ожидания.'
+                },
+                {
+                    q: 'Сколько стоит проверка зрения?',
+                    a: 'Проверка зрения в наших салонах бесплатная. Диагностика занимает в среднем 15-20 минут.'
+                },
+                {
+                    q: 'За сколько изготавливаются очки?',
+                    a: 'Срок зависит от рецепта и выбранных линз. Точный срок подскажем сразу после проверки зрения и подбора оправы.'
+                }
+            ]
+        };
+
+        var faqItemsHtml = currentFaq.items.map(function (item) {
+            return (
+                '<details class="faq-item">' +
+                    '<summary class="faq-question">' + item.q + '</summary>' +
+                    '<div class="faq-answer"><p>' + item.a + '</p></div>' +
+                '</details>'
+            );
+        }).join('');
+
+        var faqHtml =
+            '<section class="faq"><div class="container">' +
+                '<div class="section-header">' +
+                    '<h2 class="section-title">' + currentFaq.title + '</h2>' +
+                '</div>' +
+                '<div class="faq-list">' + faqItemsHtml + '</div>' +
+            '</div></section>';
+
+        var reviewsSection = salonMain.querySelector('section.promos');
+        var appointmentSection = salonMain.querySelector('#mini-appointment');
+        if (reviewsSection) {
+            reviewsSection.insertAdjacentHTML('beforebegin', faqHtml);
+        } else if (appointmentSection) {
+            appointmentSection.insertAdjacentHTML('beforebegin', faqHtml);
+        } else {
+            salonMain.insertAdjacentHTML('beforeend', faqHtml);
+        }
+
+        // Добавляем FAQPage schema на салонных страницах.
+        if (salonSeo && currentFaq && currentFaq.items && currentFaq.items.length) {
+            var faqSchemaScript = document.createElement('script');
+            faqSchemaScript.type = 'application/ld+json';
+            faqSchemaScript.textContent = JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                'mainEntity': currentFaq.items.map(function (item) {
+                    return {
+                        '@type': 'Question',
+                        'name': item.q,
+                        'acceptedAnswer': {
+                            '@type': 'Answer',
+                            'text': item.a
+                        }
+                    };
+                })
+            });
+            document.body.appendChild(faqSchemaScript);
+        }
+    }
+
     document.querySelectorAll('.salon-page section.promos').forEach(function (section) {
         if (section.querySelector('[data-reviews-carousel]')) return;
 
