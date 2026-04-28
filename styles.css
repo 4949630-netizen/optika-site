@@ -2084,7 +2084,7 @@ body.appointment-modal-open {
 }
 
 .appointment {
-    padding: 0 0 2.5rem;
+    padding: 1.25rem 0 2.75rem;
     background: linear-gradient(180deg, #f97316 0%, #ea580c 35%, #c2410c 100%);
 }
 
@@ -2125,7 +2125,8 @@ body.appointment-modal-open {
     border-radius: 1rem;
     padding: 1.5rem 1.25rem;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    margin-top: -0.5rem;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    margin-top: 0;
     position: relative;
     z-index: 1;
 }
@@ -2261,7 +2262,7 @@ body.appointment-modal-open {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin: 0.25rem 0 0.9rem;
+    margin: 0.5rem 0 1rem;
 }
 
 .appointment-or-divider::before,
@@ -2499,7 +2500,7 @@ body.appointment-modal-open {
 
 @media (min-width: 768px) {
     .appointment {
-        padding: 0 0 4rem;
+        padding: 1.5rem 0 4rem;
     }
     .appointment-promo {
         padding: 2.5rem 0 2.5rem;
