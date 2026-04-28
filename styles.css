@@ -2330,6 +2330,29 @@ body.appointment-modal-open {
     transform: translateY(-1px);
 }
 
+/* Единый вид для всех CTA «Записаться» */
+.btn-hero-cta,
+.salon-actions a.salon-btn[href="#appointment"],
+.salon-page .salon-actions a.salon-btn[href="#appointment"],
+.btn-appointment-submit {
+    background: linear-gradient(90deg, #fb923c 0%, #ea580c 52%, #c2410c 100%) !important;
+    color: #fff !important;
+    border: 0 !important;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 20px rgba(194, 65, 12, 0.22);
+    font-weight: 700;
+}
+
+.btn-hero-cta:hover,
+.salon-actions a.salon-btn[href="#appointment"]:hover,
+.salon-page .salon-actions a.salon-btn[href="#appointment"]:hover,
+.btn-appointment-submit:hover {
+    color: #fff !important;
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(194, 65, 12, 0.26);
+}
+
 .btn-appointment-arrow {
     font-size: 1.25rem;
     line-height: 1;
