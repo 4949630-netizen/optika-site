@@ -691,27 +691,40 @@ body {
 }
 
 .frames-list {
-    margin: 0 0 1rem;
-    padding-left: 1.25rem;
+    margin: 0 auto 1rem;
+    padding: 0;
+    list-style: none;
     color: var(--gray-600);
     line-height: 1.5;
     font-size: 1rem;
+    display: grid;
+    gap: 0.625rem;
+    max-width: 44rem;
 }
 .frames-list li {
     font-size: 1rem;
+    margin: 0;
 }
 
 .frames-list a {
-    color: var(--gray-900);
+    display: block;
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+    border: 1px solid rgba(14, 116, 144, 0.14);
+    color: var(--gray-800);
+    font-weight: 600;
     text-decoration: none;
-    border-bottom: 1px solid rgba(17, 24, 39, 0.25);
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .frames-list a:hover,
 .frames-list a:focus-visible {
     color: var(--brand-blue);
-    border-color: rgba(14, 116, 144, 0.45);
+    border-color: rgba(14, 116, 144, 0.42);
+    box-shadow: 0 8px 18px rgba(14, 116, 144, 0.12);
+    transform: translateY(-1px);
 }
 
 .frames-consult {
