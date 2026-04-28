@@ -887,6 +887,62 @@ main > .catalog:first-child .section-description a:focus-visible {
     }
 }
 
+@media (min-width: 1024px) {
+    .ceny-page .hero {
+        padding: 4.5rem 0 6rem;
+    }
+    .ceny-page .hero-content {
+        max-width: 56rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .ceny-page .hero-title {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+    .ceny-page .hero-includes {
+        font-size: 1.0625rem;
+        line-height: 1.55;
+    }
+    .ceny-page .hero-buttons {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .ceny-page .section-title {
+        font-size: 2.1rem;
+        line-height: 1.2;
+    }
+    .ceny-page .section-description {
+        max-width: 52rem;
+        font-size: 1.0625rem;
+        line-height: 1.65;
+    }
+
+    .ceny-page .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+        align-items: stretch;
+    }
+    .ceny-page .service-card {
+        height: 100%;
+        padding: 1.5rem 1.25rem;
+    }
+
+    .ceny-page .frames-list {
+        max-width: 56rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+    }
+
+    .ceny-page .faq-list {
+        max-width: 52rem;
+    }
+    .ceny-page .appointment-card {
+        max-width: 52rem;
+    }
+}
+
 @media (min-width: 768px) {
     .section-header {
         margin-bottom: 3rem;
