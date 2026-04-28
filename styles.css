@@ -893,20 +893,30 @@ main > .catalog:first-child .section-description a:focus-visible {
     }
     .ceny-page .hero-content {
         max-width: 56rem;
-        margin: 0 auto;
-        text-align: center;
+        margin: 0;
+        text-align: left;
     }
     .ceny-page .hero-title {
-        font-size: 3rem;
+        font-size: 2.85rem;
         line-height: 1.2;
+        max-width: 18ch;
     }
     .ceny-page .hero-includes {
         font-size: 1.0625rem;
         line-height: 1.55;
+        max-width: 42rem;
     }
     .ceny-page .hero-buttons {
-        justify-content: center;
+        justify-content: flex-start;
         gap: 1rem;
+    }
+    .ceny-page .hero-buttons .btn-hero-cta {
+        width: auto;
+        min-width: 23rem;
+    }
+    .ceny-page .hero-buttons .btn-outline {
+        width: auto;
+        min-width: 14rem;
     }
 
     .ceny-page .section-title {
