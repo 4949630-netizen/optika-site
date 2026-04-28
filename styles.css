@@ -817,6 +817,27 @@ body {
     line-height: 1.5;
 }
 
+/* Единый стиль хлебных крошек на внутренних страницах */
+main > .catalog:first-child .section-description {
+    max-width: none;
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--gray-500);
+}
+
+main > .catalog:first-child .section-description a {
+    color: var(--gray-700);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.28);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+main > .catalog:first-child .section-description a:hover,
+main > .catalog:first-child .section-description a:focus-visible {
+    color: var(--brand-blue);
+    border-color: rgba(14, 116, 144, 0.42);
+}
+
 @media (min-width: 768px) {
     .section-header {
         margin-bottom: 3rem;
