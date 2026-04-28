@@ -341,6 +341,7 @@ if (currentYearElement) {
 
     var currentPath = window.location.pathname.replace(/\/+$/, '');
     var salonSeo = salonSeoByPath[currentPath];
+    var salonMain = document.querySelector('.salon-page main');
 
     if (salonSeo) {
         var metaDescription = document.querySelector('meta[name="description"]');
@@ -427,7 +428,6 @@ if (currentYearElement) {
     }
 
     // Добавляем FAQ на страницы салонов, где блока ещё нет.
-    var salonMain = document.querySelector('.salon-page main');
     if (salonMain && !salonMain.querySelector('section.faq')) {
         var salonPath = window.location.pathname.replace(/\/+$/, '');
         var faqBySalonPath = {
