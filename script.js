@@ -294,6 +294,105 @@ if (currentYearElement) {
     });
 })();
 
+// Карусель отзывов на страницах салонов
+(function () {
+    document.querySelectorAll('.salon-page section.promos').forEach(function (section) {
+        if (section.querySelector('[data-reviews-carousel]')) return;
+
+        var reviewsLink = section.querySelector('.promos-cta a[href]');
+        if (!reviewsLink) return;
+
+        var href = reviewsLink.getAttribute('href');
+        var ctaText = reviewsLink.textContent && reviewsLink.textContent.trim()
+            ? reviewsLink.textContent.trim()
+            : 'Смотреть все отзывы на Яндекс.Картах';
+
+        var carouselHtml =
+            '<div class="salon-reviews-carousel" data-reviews-carousel>' +
+                '<button type="button" class="salons-arrow salons-arrow--prev" aria-label="Предыдущий отзыв">‹</button>' +
+                '<div class="salon-reviews-viewport">' +
+                    '<div class="salon-reviews-track">' +
+                        '<article class="review-card">' +
+                            '<div class="review-rating">★★★★★</div>' +
+                            '<div class="review-author"><span class="review-name">Дмитрий</span> · Отзыв с Яндекс.Карт</div>' +
+                            '<p class="review-text">«Не в первый раз обращаюсь за покупкой оптики и всегда всё на высшем уровне: клиентоориентированность персонала, цена, качество и выбор. Рекомендую.»</p>' +
+                            '<a href="' + href + '" class="review-source-link" target="_blank" rel="noopener noreferrer">Открыть на Яндекс.Картах →</a>' +
+                        '</article>' +
+                        '<article class="review-card">' +
+                            '<div class="review-rating">★★★★★</div>' +
+                            '<div class="review-author"><span class="review-name">Елена</span> · Отзыв с Яндекс.Карт</div>' +
+                            '<p class="review-text">«Удобно, что можно зайти по пути. Проверили зрение, помогли выбрать оправу и всё объяснили простыми словами. Очень довольна сервисом.»</p>' +
+                            '<a href="' + href + '" class="review-source-link" target="_blank" rel="noopener noreferrer">Открыть на Яндекс.Картах →</a>' +
+                        '</article>' +
+                        '<article class="review-card">' +
+                            '<div class="review-rating">★★★★★</div>' +
+                            '<div class="review-author"><span class="review-name">Ольга</span> · Отзыв с Яндекс.Карт</div>' +
+                            '<p class="review-text">«Большой выбор оправ и комфортная атмосфера. Подобрали очки без навязывания, всё чётко по цене и по срокам изготовления.»</p>' +
+                            '<a href="' + href + '" class="review-source-link" target="_blank" rel="noopener noreferrer">Открыть на Яндекс.Картах →</a>' +
+                        '</article>' +
+                    '</div>' +
+                '</div>' +
+                '<button type="button" class="salons-arrow salons-arrow--next" aria-label="Следующий отзыв">›</button>' +
+            '</div>';
+
+        section.querySelectorAll('.promos-cta').forEach(function (el) { el.remove(); });
+        section.insertAdjacentHTML('beforeend', carouselHtml);
+        section.insertAdjacentHTML(
+            'beforeend',
+            '<div class="promos-cta"><a href="' + href + '" class="btn btn-primary" target="_blank" rel="noopener noreferrer">' + ctaText + '</a></div>'
+        );
+    });
+
+    var carousels = document.querySelectorAll('[data-reviews-carousel]');
+    if (!carousels.length) return;
+
+    carousels.forEach(function (carousel) {
+        var viewport = carousel.querySelector('.salon-reviews-viewport');
+        var track = carousel.querySelector('.salon-reviews-track');
+        var prevBtn = carousel.querySelector('.salons-arrow--prev');
+        var nextBtn = carousel.querySelector('.salons-arrow--next');
+        if (!viewport || !track || !prevBtn || !nextBtn) return;
+
+        var slides = track.querySelectorAll('.review-card');
+        if (!slides.length) return;
+
+        var currentIndex = 0;
+        var startX = 0;
+        var deltaX = 0;
+
+        function updatePosition(index) {
+            currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+            track.style.transform = 'translateX(' + (-100 * currentIndex) + '%)';
+        }
+
+        prevBtn.addEventListener('click', function () {
+            updatePosition(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', function () {
+            updatePosition(currentIndex + 1);
+        });
+
+        viewport.addEventListener('touchstart', function (e) {
+            startX = e.touches[0].clientX;
+            deltaX = 0;
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', function (e) {
+            deltaX = e.touches[0].clientX - startX;
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', function () {
+            var threshold = viewport.offsetWidth * 0.2;
+            if (deltaX < -threshold) updatePosition(currentIndex + 1);
+            if (deltaX > threshold) updatePosition(currentIndex - 1);
+            deltaX = 0;
+        });
+
+        updatePosition(0);
+    });
+})();
+
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

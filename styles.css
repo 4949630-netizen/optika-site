@@ -1590,6 +1590,42 @@ body {
     text-align: center;
 }
 
+.salon-page .salon-reviews-carousel {
+    position: relative;
+    margin: 0 auto 1rem;
+    max-width: 62rem;
+}
+
+.salon-page .salon-reviews-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.salon-page .salon-reviews-track {
+    display: flex;
+    transition: transform 0.35s ease-out;
+    will-change: transform;
+}
+
+.salon-page .salon-reviews-track .review-card {
+    flex: 0 0 100%;
+    margin: 0;
+}
+
+.salon-page .salon-reviews-carousel .salons-arrow {
+    top: 45%;
+}
+
+@media (min-width: 768px) {
+    .salon-page .salon-reviews-carousel .salons-arrow--prev {
+        left: -0.75rem;
+    }
+
+    .salon-page .salon-reviews-carousel .salons-arrow--next {
+        right: -0.75rem;
+    }
+}
+
 .salon-page .promos-cta .btn,
 .salon-page .promos-cta .btn:visited,
 .salon-page .promos-cta .btn:hover,
