@@ -147,6 +147,21 @@ function formatRussianPhoneDisplay(d11) {
     return '+7 (' + d11.slice(1, 4) + ') ' + d11.slice(4, 7) + '-' + d11.slice(7, 9) + '-' + d11.slice(9, 11);
 }
 
+// Единые плейсхолдеры и автозаполнение для всех форм записи
+document.querySelectorAll('.appointment-form').forEach(function (formEl) {
+    var nameInput = formEl.querySelector('input[name="name"]');
+    var phoneInput = formEl.querySelector('input[name="phone"]');
+    if (nameInput) {
+        if (!nameInput.getAttribute('placeholder')) nameInput.setAttribute('placeholder', 'Ваше имя');
+        nameInput.setAttribute('autocomplete', 'name');
+    }
+    if (phoneInput) {
+        if (!phoneInput.getAttribute('placeholder')) phoneInput.setAttribute('placeholder', '+7 (999) 123-45-67');
+        phoneInput.setAttribute('autocomplete', 'tel');
+        phoneInput.setAttribute('inputmode', 'tel');
+    }
+});
+
 // Form submission
 const appointmentForm = document.getElementById('appointmentForm');
 if (appointmentForm) {
