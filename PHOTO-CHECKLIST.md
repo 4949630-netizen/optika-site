@@ -4,7 +4,7 @@
 
 ## Готово
 - [x] `salony/lenina-76/`
-- [x] `salony/venedyapina-1a/`
+- [x] `salony/leskova-2/`
 - [x] `salony/dyakonova-24a/`
 - [x] `salony/lenina-113-ok/`
 - [x] `salony/kominterna-117/`
