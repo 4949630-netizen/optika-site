@@ -379,25 +379,27 @@ if (currentYearElement) {
 
     // Добавляем блок сотрудников (без фото) на страницах салонов.
     var teamBySalonPath = {
-        '/salony/gagarina-184': ['Ольга', 'Анна'],
-        '/salony/burnakovskaya-103a': ['Екатерина', 'Марина'],
-        '/salony/lenina-76': ['Светлана', 'Наталья'],
-        '/salony/lenina-33-muravey': ['Ирина', 'Елена'],
-        '/salony/leskova-2': ['Татьяна', 'Юлия'],
-        '/salony/dyakonova-24a': ['Людмила', 'Виктория'],
-        '/salony/lenina-113-ok': ['Дарья', 'Оксана'],
-        '/salony/kominterna-117': ['Елена', 'Надежда'],
-        '/salony/beketova-66': ['Ольга', 'Мария'],
-        '/salony/korabley-4': ['Алина', 'Ксения']
+        '/salony/gagarina-184': ['Ольга', 'Юлия'],
+        '/salony/burnakovskaya-103a': ['Надежда', 'Екатерина'],
+        '/salony/lenina-76': ['Евгения', 'Мария'],
+        '/salony/lenina-33-muravey': ['Екатерина', 'Екатерина'],
+        '/salony/leskova-2': ['Валентина'],
+        '/salony/dyakonova-24a': ['Наталья', 'Михаил'],
+        '/salony/lenina-113-ok': ['Елена', 'Евгения'],
+        '/salony/kominterna-117': ['Юлия', 'Татьяна'],
+        '/salony/beketova-66': ['Елена', 'Виктория'],
+        '/salony/korabley-4': ['Ирина', 'Ирина']
     };
     var teamNames = teamBySalonPath[currentPath];
     if (salonMain && teamNames && !salonMain.querySelector('[data-salon-team]')) {
+        var teamCards = teamNames.map(function (name) {
+            return '<article class="salon-team-mini-card"><h3 class="salon-team-mini-name">' + name + '</h3><p class="salon-team-mini-role">Оптик-консультант</p></article>';
+        }).join('');
         var teamHtml =
             '<section class="salons" data-salon-team><div class="container">' +
                 '<h2 class="section-title" style="margin-bottom:1rem;">Наши сотрудники в салоне</h2>' +
                 '<div class="salon-team-mini">' +
-                    '<article class="salon-team-mini-card"><h3 class="salon-team-mini-name">' + teamNames[0] + '</h3><p class="salon-team-mini-role">Оптик-консультант</p></article>' +
-                    '<article class="salon-team-mini-card"><h3 class="salon-team-mini-name">' + teamNames[1] + '</h3><p class="salon-team-mini-role">Оптик-консультант</p></article>' +
+                    teamCards +
                 '</div>' +
             '</div></section>';
         var promosSection = salonMain.querySelector('section.promos');
