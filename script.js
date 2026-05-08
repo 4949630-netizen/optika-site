@@ -428,7 +428,7 @@ if (currentYearElement) {
     if (salonSeo) {
         var sameAs = [
             'https://vk.ru/optika_dobrih_cen',
-            'https://t.me/+79778855250',
+            'https://t.me/optika_dobrih_cen',
             'https://2gis.ru/n_novgorod/firm/70000001032583529'
         ];
         document.querySelectorAll('script[type="application/ld+json"]').forEach(function (scriptEl) {
