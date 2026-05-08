@@ -330,7 +330,7 @@ if (currentYearElement) {
         },
         '/salony/leskova-2': {
             meta: 'Оптика в Автозаводском районе, ул. Лескова, 2. Очки для взрослых и детей от 2 990 ₽, проверка зрения бесплатно. Пн-Пт 9:00-20:00, Сб-Вс 10:00-19:00. Запись онлайн.',
-            image: 'https://optikadobryhcen.ru/salony/images/venedyapina-1a-fasad.png'
+            image: 'https://optikadobryhcen.ru/leskova-2-fasad.png'
         },
         '/salony/dyakonova-24a': {
             meta: 'Оптика в Автозаводском районе, ул. Дьяконова 24А. Очки от 2 990 ₽ и бесплатная проверка зрения. Рядом со зданием Сбербанка в микрорайоне Северный. Запись онлайн.',
@@ -350,7 +350,7 @@ if (currentYearElement) {
         },
         '/salony/korabley-4': {
             meta: 'Оптика в Сормово, пр. Кораблестроителей 4. Новый салон 2026, очки от 2 990 ₽ и бесплатная проверка зрения. Рядом с остановкой «Проспект Кораблестроителей».',
-            image: 'https://optikadobryhcen.ru/salony/images/korabley-4-fasad.png'
+            image: 'https://optikadobryhcen.ru/korabley-4-fasad.png?v=20260508'
         }
     };
 
@@ -428,7 +428,7 @@ if (currentYearElement) {
     if (salonSeo) {
         var sameAs = [
             'https://vk.ru/optika_dobrih_cen',
-            'https://t.me/optika_dobrih_cen',
+            'https://t.me/+79778855250',
             'https://2gis.ru/n_novgorod/firm/70000001032583529'
         ];
         document.querySelectorAll('script[type="application/ld+json"]').forEach(function (scriptEl) {
