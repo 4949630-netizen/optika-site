@@ -1219,20 +1219,17 @@ main > .catalog:first-child .section-description a:focus-visible {
     line-height: 1.5;
 }
 
-.service-description a {
-    color: var(--primary-600);
+.service-description a,
+.service-description a:visited {
+    color: var(--primary-600) !important;
     font-weight: 600;
     text-decoration: none;
 }
 
 .service-description a:hover,
 .service-description a:focus-visible {
-    color: var(--primary-700);
+    color: var(--primary-700) !important;
     text-decoration: underline;
-}
-
-.service-description a:visited {
-    color: var(--primary-600);
 }
 
 /* Десктоп: полные тексты карточек */
@@ -3054,7 +3051,7 @@ body.appointment-modal-open {
     text-decoration: underline;
 }
 
-.reviews-cta {
+.reviews .reviews-cta {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3062,18 +3059,20 @@ body.appointment-modal-open {
     flex-wrap: wrap;
     gap: 0.75rem;
     width: 100%;
+    max-width: 100%;
     text-align: center;
-    margin-top: 2rem;
+    margin: 2rem auto 0;
 }
 
-.reviews-cta .btn {
+.reviews .reviews-cta .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     margin: 0 auto;
     width: auto;
-    max-width: min(100%, 36rem);
+    max-width: min(100%, 40rem);
+    align-self: center;
 }
 
 @media (min-width: 768px) {
@@ -3823,6 +3822,63 @@ html {
 
 .proverka-page .hero-buttons {
     margin-top: 1.25rem;
+}
+
+.proverka-page .hero-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    padding: 1rem 1.75rem;
+    border-radius: 0.75rem;
+    border: 2px solid transparent;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.25;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.proverka-page .hero-buttons .btn-hero-cta {
+    background: linear-gradient(90deg, #fb923c 0%, #ea580c 52%, #c2410c 100%) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 8px 20px rgba(194, 65, 12, 0.22);
+}
+
+.proverka-page .hero-buttons .btn-hero-cta:hover {
+    color: #fff !important;
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(194, 65, 12, 0.26);
+}
+
+.proverka-page .hero-buttons .btn-outline {
+    background: #fff !important;
+    color: var(--primary-600) !important;
+    border-color: #fff !important;
+}
+
+.proverka-page .hero-buttons .btn-outline:hover,
+.proverka-page .hero-buttons .btn-outline:focus-visible {
+    background: var(--primary-50) !important;
+    color: var(--primary-700) !important;
+    border-color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+@media (min-width: 768px) {
+    .proverka-page .hero-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .proverka-page .hero-buttons .btn {
+        width: auto;
+        flex: 0 1 auto;
+    }
 }
 
 .proverka-page .catalog-compact {
