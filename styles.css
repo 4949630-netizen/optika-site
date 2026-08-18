@@ -1131,7 +1131,7 @@ main > .catalog:first-child .section-description a:focus-visible {
 
 @media (min-width: 640px) {
     .promos-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 }
@@ -1141,7 +1141,7 @@ main > .catalog:first-child .section-description a:focus-visible {
         padding: 2.5rem 0;
     }
     .promos-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
     .promo-card-title {
