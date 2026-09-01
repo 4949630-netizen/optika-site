@@ -1285,6 +1285,26 @@ main > .catalog:first-child .section-description a:focus-visible {
     text-decoration: underline;
 }
 
+.service-card-link {
+    margin-top: 0.625rem;
+    margin-bottom: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.service-card-link a,
+.service-card-link a:visited {
+    color: var(--primary-600) !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.service-card-link a:hover,
+.service-card-link a:focus-visible {
+    color: var(--primary-700) !important;
+    text-decoration: underline;
+}
+
 /* Десктоп: полные тексты карточек */
 .service-desc-desktop { display: none; }
 .service-title-desktop { display: none; }
