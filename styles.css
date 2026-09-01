@@ -278,6 +278,10 @@ body {
     display: block;
 }
 
+.hero-title-line + .hero-title-line {
+    margin-top: 0.05em;
+}
+
 .hero-price {
     display: inline-block;
     font-size: 1.15em;
@@ -286,7 +290,8 @@ body {
 }
 
 .hero-includes {
-    display: block;
+    display: flex;
+    flex-direction: column;
     font-family: inherit;
     font-size: 0.9375rem;
     font-weight: 500;
@@ -301,8 +306,12 @@ body {
     display: block;
 }
 
-.hero-includes-line + .hero-includes-line {
-    margin-top: 0.2rem;
+.hero-includes-line--primary {
+    order: 2;
+}
+
+.hero-includes-line--secondary {
+    order: 1;
 }
 
 
@@ -467,25 +476,29 @@ body {
     }
     .hero-title {
         font-size: 2.5rem;
-        line-height: 1.12;
+        line-height: 1.06;
+        margin-bottom: 0;
+    }
+    .hero-title-line + .hero-title-line {
+        margin-top: 0;
     }
     .hero-includes {
-        display: flex;
-        flex-direction: column-reverse;
-        margin-top: 0.35rem;
+        margin-top: 0.3rem;
+        margin-bottom: 1rem;
     }
     .hero-includes-line--primary {
+        order: 1;
         font-size: 1.0625rem;
         font-weight: 600;
+        line-height: 1.35;
     }
     .hero-includes-line--secondary {
+        order: 2;
+        margin-top: 0.35rem;
         font-size: 0.9375rem;
         font-weight: 500;
         color: rgba(255, 255, 255, 0.88);
-    }
-    .hero-includes-line + .hero-includes-line {
-        margin-top: 0;
-        margin-bottom: 0.25rem;
+        line-height: 1.4;
     }
     .hero-description {
         font-size: 1.25rem;
@@ -507,15 +520,16 @@ body {
     }
     .hero-title {
         font-size: 3.5rem;
-        line-height: 1.08;
+        line-height: 1.04;
     }
     .hero-includes {
-        margin-top: 0.4rem;
+        margin-top: 0.35rem;
     }
     .hero-includes-line--primary {
         font-size: 1.125rem;
     }
     .hero-includes-line--secondary {
+        margin-top: 0.4rem;
         font-size: 1rem;
     }
     .hero-buttons .btn-hero-cta {
