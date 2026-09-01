@@ -278,16 +278,15 @@ body {
     display: block;
 }
 
-.hero-title-geo-group .hero-title-line {
-    display: inline;
-}
+@media (max-width: 639px) {
+    .hero-title-line:nth-child(1),
+    .hero-title-line:nth-child(2) {
+        display: inline;
+    }
 
-.hero-title-geo-group .hero-title-line + .hero-title-line::before {
-    content: ' ';
-}
-
-.hero-title-geo-group + .hero-title-line {
-    margin-top: 0.05em;
+    .hero-title-line:nth-child(2)::before {
+        content: ' ';
+    }
 }
 
 .hero-price {
@@ -491,14 +490,9 @@ body {
         line-height: 1.12;
         margin-bottom: 0;
     }
-    .hero-title-geo-group {
-        display: contents;
-    }
     .hero-title-line {
+        display: block;
         margin: 0;
-    }
-    .hero-title-geo-group + .hero-title-line {
-        margin-top: 0;
     }
     .hero-price {
         font-size: 0.78em;
