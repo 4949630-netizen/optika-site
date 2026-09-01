@@ -325,7 +325,7 @@ if (currentYearElement) {
             image: 'https://optikadobryhcen.ru/salony/images/lenina-76-fasad.png'
         },
         '/salony/lenina-33-muravey': {
-            meta: 'Оптика в ТЦ Муравей, пр. Ленина 33. Рейтинг 5.0, очки от 2 990 ₽ и бесплатная проверка зрения. Рядом с метро Заречная. Ежедневно 9:00-21:00. Запись онлайн.',
+            meta: 'Оптика в ТЦ Муравей, пр. Ленина 33. Рейтинг 5,0, очки от 2 990 ₽ и бесплатная проверка зрения. Рядом с метро Заречная. Ежедневно 9:00-21:00. Запись онлайн.',
             image: 'https://optikadobryhcen.ru/salony/images/lenina-33-muravey-fasad.png'
         },
         '/salony/leskova-2': {
